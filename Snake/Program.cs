@@ -16,7 +16,8 @@ namespace Snake
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            StartScreen startScreen = new StartScreen();
+            Application.Run(startScreen);
         }
     }
 }
