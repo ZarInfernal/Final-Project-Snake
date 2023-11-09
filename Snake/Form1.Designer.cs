@@ -28,11 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlButtonClose = new System.Windows.Forms.Button();
-            this.pnlButtonMin = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.lblSettings = new System.Windows.Forms.Label();
             this.lblMusic = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,66 +45,10 @@
             this.clickSoundSwitch = new Snake.Custom_Controlers.ToggleButtons();
             this.musicSwitch = new Snake.Custom_Controlers.ToggleButtons();
             this.toggleButtons1 = new Snake.Custom_Controlers.ToggleButtons();
-            this.panel1.SuspendLayout();
+            this.pnlButtonMin = new System.Windows.Forms.Button();
+            this.pnlButtonClose = new System.Windows.Forms.Button();
+            this.customTitleBarControl1 = new CustomTitleBarControl();
             this.SuspendLayout();
-            // 
-            // pnlButtonClose
-            // 
-            this.pnlButtonClose.BackColor = System.Drawing.Color.Transparent;
-            this.pnlButtonClose.BackgroundImage = global::Snake.Properties.Resources.close;
-            this.pnlButtonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlButtonClose.Location = new System.Drawing.Point(432, 1);
-            this.pnlButtonClose.Name = "pnlButtonClose";
-            this.pnlButtonClose.Size = new System.Drawing.Size(39, 37);
-            this.pnlButtonClose.TabIndex = 15;
-            this.pnlButtonClose.UseVisualStyleBackColor = false;
-            this.pnlButtonClose.Click += new System.EventHandler(this.pnlButtonClose_Click);
-            // 
-            // pnlButtonMin
-            // 
-            this.pnlButtonMin.BackColor = System.Drawing.Color.Transparent;
-            this.pnlButtonMin.BackgroundImage = global::Snake.Properties.Resources.minimize;
-            this.pnlButtonMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlButtonMin.Location = new System.Drawing.Point(387, 1);
-            this.pnlButtonMin.Name = "pnlButtonMin";
-            this.pnlButtonMin.Size = new System.Drawing.Size(39, 37);
-            this.pnlButtonMin.TabIndex = 14;
-            this.pnlButtonMin.UseVisualStyleBackColor = false;
-            this.pnlButtonMin.Click += new System.EventHandler(this.pnlButtonMin_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.pnlButtonClose);
-            this.panel1.Controls.Add(this.pnlButtonMin);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(483, 41);
-            this.panel1.TabIndex = 16;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = global::Snake.Properties.Resources.close;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Location = new System.Drawing.Point(1006, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(39, 37);
-            this.button1.TabIndex = 15;
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImage = global::Snake.Properties.Resources.minimize;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.Location = new System.Drawing.Point(966, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(39, 37);
-            this.button2.TabIndex = 14;
-            this.button2.UseVisualStyleBackColor = false;
             // 
             // lblSettings
             // 
@@ -326,6 +265,42 @@
             this.toggleButtons1.TabIndex = 18;
             this.toggleButtons1.UseVisualStyleBackColor = true;
             // 
+            // pnlButtonMin
+            // 
+            this.pnlButtonMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.pnlButtonMin.BackgroundImage = global::Snake.Properties.Resources.minimize;
+            this.pnlButtonMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pnlButtonMin.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.pnlButtonMin.FlatAppearance.BorderSize = 0;
+            this.pnlButtonMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.pnlButtonMin.Location = new System.Drawing.Point(380, 4);
+            this.pnlButtonMin.Name = "pnlButtonMin";
+            this.pnlButtonMin.Size = new System.Drawing.Size(39, 37);
+            this.pnlButtonMin.TabIndex = 14;
+            this.pnlButtonMin.UseVisualStyleBackColor = false;
+            this.pnlButtonMin.Click += new System.EventHandler(this.pnlButtonMin_Click);
+            // 
+            // pnlButtonClose
+            // 
+            this.pnlButtonClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.pnlButtonClose.BackgroundImage = global::Snake.Properties.Resources.close;
+            this.pnlButtonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pnlButtonClose.FlatAppearance.BorderSize = 0;
+            this.pnlButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.pnlButtonClose.Location = new System.Drawing.Point(425, 4);
+            this.pnlButtonClose.Name = "pnlButtonClose";
+            this.pnlButtonClose.Size = new System.Drawing.Size(39, 37);
+            this.pnlButtonClose.TabIndex = 15;
+            this.pnlButtonClose.UseVisualStyleBackColor = false;
+            this.pnlButtonClose.Click += new System.EventHandler(this.pnlButtonClose_Click);
+            // 
+            // customTitleBarControl1
+            // 
+            this.customTitleBarControl1.Location = new System.Drawing.Point(-3, 1);
+            this.customTitleBarControl1.Name = "customTitleBarControl1";
+            this.customTitleBarControl1.Size = new System.Drawing.Size(1116, 40);
+            this.customTitleBarControl1.TabIndex = 36;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -333,6 +308,9 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(476, 608);
             this.ControlBox = false;
+            this.Controls.Add(this.pnlButtonClose);
+            this.Controls.Add(this.pnlButtonMin);
+            this.Controls.Add(this.customTitleBarControl1);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -350,23 +328,15 @@
             this.Controls.Add(this.musicSwitch);
             this.Controls.Add(this.toggleButtons1);
             this.Controls.Add(this.lblSettings);
-            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SettingsForm";
             this.Text = "Form1";
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button pnlButtonClose;
-        private System.Windows.Forms.Button pnlButtonMin;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label lblSettings;
         private Custom_Controlers.ToggleButtons toggleButtons1;
         private Custom_Controlers.ToggleButtons musicSwitch;
@@ -384,5 +354,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnPlay;
+        private System.Windows.Forms.Button pnlButtonMin;
+        private System.Windows.Forms.Button pnlButtonClose;
+        private CustomTitleBarControl customTitleBarControl1;
     }
 }

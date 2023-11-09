@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.customTitleBar = new System.Windows.Forms.Panel();
             this.pnlButtonClose = new System.Windows.Forms.Button();
             this.pnlButtonMin = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -43,7 +42,7 @@
             this.heart1 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.backBtn = new System.Windows.Forms.PictureBox();
-            this.customTitleBar.SuspendLayout();
+            this.customTitleBarControl1 = new CustomTitleBarControl();
             ((System.ComponentModel.ISupportInitialize)(this.heart3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart1)).BeginInit();
@@ -51,23 +50,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.backBtn)).BeginInit();
             this.SuspendLayout();
             // 
-            // customTitleBar
-            // 
-            this.customTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.customTitleBar.Controls.Add(this.pnlButtonClose);
-            this.customTitleBar.Controls.Add(this.pnlButtonMin);
-            this.customTitleBar.Location = new System.Drawing.Point(1, 0);
-            this.customTitleBar.Name = "customTitleBar";
-            this.customTitleBar.Size = new System.Drawing.Size(1311, 37);
-            this.customTitleBar.TabIndex = 14;
-            this.customTitleBar.Paint += new System.Windows.Forms.PaintEventHandler(this.customTitleBar_Paint);
-            // 
             // pnlButtonClose
             // 
-            this.pnlButtonClose.BackColor = System.Drawing.Color.Transparent;
+            this.pnlButtonClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.pnlButtonClose.BackgroundImage = global::Snake.Properties.Resources.close;
             this.pnlButtonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlButtonClose.Location = new System.Drawing.Point(1257, 1);
+            this.pnlButtonClose.FlatAppearance.BorderSize = 0;
+            this.pnlButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.pnlButtonClose.Location = new System.Drawing.Point(1247, -1);
             this.pnlButtonClose.Name = "pnlButtonClose";
             this.pnlButtonClose.Size = new System.Drawing.Size(39, 37);
             this.pnlButtonClose.TabIndex = 15;
@@ -76,10 +66,12 @@
             // 
             // pnlButtonMin
             // 
-            this.pnlButtonMin.BackColor = System.Drawing.Color.Transparent;
+            this.pnlButtonMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.pnlButtonMin.BackgroundImage = global::Snake.Properties.Resources.minimize;
             this.pnlButtonMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlButtonMin.Location = new System.Drawing.Point(1217, 1);
+            this.pnlButtonMin.FlatAppearance.BorderSize = 0;
+            this.pnlButtonMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.pnlButtonMin.Location = new System.Drawing.Point(1207, -1);
             this.pnlButtonMin.Name = "pnlButtonMin";
             this.pnlButtonMin.Size = new System.Drawing.Size(39, 37);
             this.pnlButtonMin.TabIndex = 14;
@@ -213,7 +205,7 @@
             // 
             // backBtn
             // 
-            this.backBtn.BackColor = System.Drawing.Color.Transparent;
+            this.backBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.backBtn.Image = global::Snake.Properties.Resources.Sprite_0002;
             this.backBtn.Location = new System.Drawing.Point(30, 72);
             this.backBtn.Name = "backBtn";
@@ -223,12 +215,22 @@
             this.backBtn.TabStop = false;
             this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
+            // customTitleBarControl1
+            // 
+            this.customTitleBarControl1.Location = new System.Drawing.Point(-2, -4);
+            this.customTitleBarControl1.Name = "customTitleBarControl1";
+            this.customTitleBarControl1.Size = new System.Drawing.Size(1309, 40);
+            this.customTitleBarControl1.TabIndex = 39;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1309, 1086);
+            this.Controls.Add(this.pnlButtonClose);
+            this.Controls.Add(this.pnlButtonMin);
+            this.Controls.Add(this.customTitleBarControl1);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.heart3);
             this.Controls.Add(this.heart2);
@@ -241,11 +243,9 @@
             this.Controls.Add(this.lblGroup);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.customTitleBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
             this.Text = "Snake Game";
-            this.customTitleBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.heart3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart1)).EndInit();
@@ -260,7 +260,6 @@
 
         private System.Windows.Forms.Button pnlButtonClose;
         private System.Windows.Forms.Button pnlButtonMin;
-        private System.Windows.Forms.Panel customTitleBar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblGroup;
@@ -273,6 +272,7 @@
         private System.Windows.Forms.PictureBox heart2;
         private System.Windows.Forms.PictureBox heart3;
         private System.Windows.Forms.PictureBox backBtn;
+        private CustomTitleBarControl customTitleBarControl1;
     }
 }
 
