@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlButtonClose = new System.Windows.Forms.Button();
             this.pnlButtonMin = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -42,6 +43,7 @@
             this.heart1 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.backBtn = new System.Windows.Forms.PictureBox();
+            this.directionTimer = new System.Windows.Forms.Timer(this.components);
             this.customTitleBarControl1 = new CustomTitleBarControl();
             ((System.ComponentModel.ISupportInitialize)(this.heart3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart2)).BeginInit();
@@ -57,9 +59,10 @@
             this.pnlButtonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pnlButtonClose.FlatAppearance.BorderSize = 0;
             this.pnlButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.pnlButtonClose.Location = new System.Drawing.Point(1247, -1);
+            this.pnlButtonClose.Location = new System.Drawing.Point(831, -1);
+            this.pnlButtonClose.Margin = new System.Windows.Forms.Padding(2);
             this.pnlButtonClose.Name = "pnlButtonClose";
-            this.pnlButtonClose.Size = new System.Drawing.Size(39, 37);
+            this.pnlButtonClose.Size = new System.Drawing.Size(26, 24);
             this.pnlButtonClose.TabIndex = 15;
             this.pnlButtonClose.UseVisualStyleBackColor = false;
             this.pnlButtonClose.Click += new System.EventHandler(this.pnlButtonClose_Click);
@@ -71,9 +74,10 @@
             this.pnlButtonMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pnlButtonMin.FlatAppearance.BorderSize = 0;
             this.pnlButtonMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.pnlButtonMin.Location = new System.Drawing.Point(1207, -1);
+            this.pnlButtonMin.Location = new System.Drawing.Point(805, -1);
+            this.pnlButtonMin.Margin = new System.Windows.Forms.Padding(2);
             this.pnlButtonMin.Name = "pnlButtonMin";
-            this.pnlButtonMin.Size = new System.Drawing.Size(39, 37);
+            this.pnlButtonMin.Size = new System.Drawing.Size(26, 24);
             this.pnlButtonMin.TabIndex = 14;
             this.pnlButtonMin.UseVisualStyleBackColor = false;
             this.pnlButtonMin.Click += new System.EventHandler(this.pnlButtonMin_Click);
@@ -83,9 +87,10 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI Variable Display", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.lblTitle.Location = new System.Drawing.Point(204, 101);
+            this.lblTitle.Location = new System.Drawing.Point(136, 66);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(360, 69);
+            this.lblTitle.Size = new System.Drawing.Size(241, 47);
             this.lblTitle.TabIndex = 16;
             this.lblTitle.Text = "SNAKE GAME";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -95,9 +100,10 @@
             this.lblGroup.AutoSize = true;
             this.lblGroup.Font = new System.Drawing.Font("Segoe UI Variable Display", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.lblGroup.Location = new System.Drawing.Point(1009, 101);
+            this.lblGroup.Location = new System.Drawing.Point(673, 66);
+            this.lblGroup.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGroup.Name = "lblGroup";
-            this.lblGroup.Size = new System.Drawing.Size(261, 69);
+            this.lblGroup.Size = new System.Drawing.Size(176, 47);
             this.lblGroup.TabIndex = 17;
             this.lblGroup.Text = "Group 8   ";
             this.lblGroup.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -107,10 +113,9 @@
             this.btnStartGame.BackColor = System.Drawing.Color.Teal;
             this.btnStartGame.Font = new System.Drawing.Font("Segoe UI Variable Display", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartGame.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnStartGame.Location = new System.Drawing.Point(989, 397);
-            this.btnStartGame.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStartGame.Location = new System.Drawing.Point(659, 258);
             this.btnStartGame.Name = "btnStartGame";
-            this.btnStartGame.Size = new System.Drawing.Size(247, 74);
+            this.btnStartGame.Size = new System.Drawing.Size(165, 48);
             this.btnStartGame.TabIndex = 18;
             this.btnStartGame.Text = "START";
             this.btnStartGame.UseVisualStyleBackColor = false;
@@ -121,9 +126,10 @@
             this.lblHighScore.AutoSize = true;
             this.lblHighScore.Font = new System.Drawing.Font("Segoe UI Variable Display", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHighScore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.lblHighScore.Location = new System.Drawing.Point(1002, 492);
+            this.lblHighScore.Location = new System.Drawing.Point(668, 320);
+            this.lblHighScore.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHighScore.Name = "lblHighScore";
-            this.lblHighScore.Size = new System.Drawing.Size(245, 43);
+            this.lblHighScore.Size = new System.Drawing.Size(169, 30);
             this.lblHighScore.TabIndex = 30;
             this.lblHighScore.Text = "HIGH SCORE: 0";
             this.lblHighScore.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -131,20 +137,22 @@
             // comboBox1
             // 
             this.comboBox1.BackColor = System.Drawing.Color.Teal;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(1033, 559);
+            this.comboBox1.Location = new System.Drawing.Point(689, 363);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(170, 28);
+            this.comboBox1.Size = new System.Drawing.Size(115, 21);
             this.comboBox1.TabIndex = 31;
+            this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox1_KeyDown);
             // 
             // lblScore
             // 
             this.lblScore.AutoSize = true;
             this.lblScore.Font = new System.Drawing.Font("Segoe UI Variable Display", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.lblScore.Location = new System.Drawing.Point(1034, 621);
+            this.lblScore.Location = new System.Drawing.Point(689, 404);
+            this.lblScore.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(156, 43);
+            this.lblScore.Size = new System.Drawing.Size(107, 30);
             this.lblScore.TabIndex = 32;
             this.lblScore.Text = "SCORE: 0";
             this.lblScore.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -154,9 +162,10 @@
             this.lblPlayerHighScore.AutoSize = true;
             this.lblPlayerHighScore.Font = new System.Drawing.Font("Segoe UI Variable Display", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlayerHighScore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.lblPlayerHighScore.Location = new System.Drawing.Point(930, 683);
+            this.lblPlayerHighScore.Location = new System.Drawing.Point(620, 444);
+            this.lblPlayerHighScore.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlayerHighScore.Name = "lblPlayerHighScore";
-            this.lblPlayerHighScore.Size = new System.Drawing.Size(367, 43);
+            this.lblPlayerHighScore.Size = new System.Drawing.Size(251, 30);
             this.lblPlayerHighScore.TabIndex = 33;
             this.lblPlayerHighScore.Text = "PLAYER HIGH SCORE: 0";
             this.lblPlayerHighScore.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -165,9 +174,10 @@
             // 
             this.heart3.BackColor = System.Drawing.Color.Transparent;
             this.heart3.Image = global::Snake.Properties.Resources.heart;
-            this.heart3.Location = new System.Drawing.Point(784, 236);
+            this.heart3.Location = new System.Drawing.Point(523, 153);
+            this.heart3.Margin = new System.Windows.Forms.Padding(2);
             this.heart3.Name = "heart3";
-            this.heart3.Size = new System.Drawing.Size(58, 58);
+            this.heart3.Size = new System.Drawing.Size(39, 38);
             this.heart3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.heart3.TabIndex = 36;
             this.heart3.TabStop = false;
@@ -176,9 +186,10 @@
             // 
             this.heart2.BackColor = System.Drawing.Color.Transparent;
             this.heart2.Image = global::Snake.Properties.Resources.heart;
-            this.heart2.Location = new System.Drawing.Point(720, 236);
+            this.heart2.Location = new System.Drawing.Point(480, 153);
+            this.heart2.Margin = new System.Windows.Forms.Padding(2);
             this.heart2.Name = "heart2";
-            this.heart2.Size = new System.Drawing.Size(58, 58);
+            this.heart2.Size = new System.Drawing.Size(39, 38);
             this.heart2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.heart2.TabIndex = 35;
             this.heart2.TabStop = false;
@@ -187,9 +198,10 @@
             // 
             this.heart1.BackColor = System.Drawing.Color.Transparent;
             this.heart1.Image = global::Snake.Properties.Resources.heart;
-            this.heart1.Location = new System.Drawing.Point(656, 236);
+            this.heart1.Location = new System.Drawing.Point(437, 153);
+            this.heart1.Margin = new System.Windows.Forms.Padding(2);
             this.heart1.Name = "heart1";
-            this.heart1.Size = new System.Drawing.Size(58, 58);
+            this.heart1.Size = new System.Drawing.Size(39, 38);
             this.heart1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.heart1.TabIndex = 34;
             this.heart1.TabStop = false;
@@ -197,37 +209,45 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Teal;
-            this.pictureBox1.Location = new System.Drawing.Point(16, 224);
+            this.pictureBox1.Location = new System.Drawing.Point(11, 146);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(840, 840);
+            this.pictureBox1.Size = new System.Drawing.Size(560, 540);
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
             // backBtn
             // 
             this.backBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.backBtn.Image = global::Snake.Properties.Resources.Sprite_0002;
-            this.backBtn.Location = new System.Drawing.Point(30, 72);
+            this.backBtn.Location = new System.Drawing.Point(20, 47);
+            this.backBtn.Margin = new System.Windows.Forms.Padding(2);
             this.backBtn.Name = "backBtn";
-            this.backBtn.Size = new System.Drawing.Size(66, 66);
+            this.backBtn.Size = new System.Drawing.Size(44, 43);
             this.backBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.backBtn.TabIndex = 38;
             this.backBtn.TabStop = false;
             this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
+            // directionTimer
+            // 
+            this.directionTimer.Tick += new System.EventHandler(this.directionTimer_Tick);
+            // 
             // customTitleBarControl1
             // 
-            this.customTitleBarControl1.Location = new System.Drawing.Point(-2, -4);
+            this.customTitleBarControl1.Location = new System.Drawing.Point(-1, -3);
+            this.customTitleBarControl1.Margin = new System.Windows.Forms.Padding(2);
             this.customTitleBarControl1.Name = "customTitleBarControl1";
-            this.customTitleBarControl1.Size = new System.Drawing.Size(1309, 40);
+            this.customTitleBarControl1.Size = new System.Drawing.Size(873, 26);
             this.customTitleBarControl1.TabIndex = 39;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1309, 1086);
+            this.ClientSize = new System.Drawing.Size(873, 706);
             this.Controls.Add(this.pnlButtonClose);
             this.Controls.Add(this.pnlButtonMin);
             this.Controls.Add(this.customTitleBarControl1);
@@ -244,8 +264,11 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Text = "Snake Game";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.heart3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart1)).EndInit();
@@ -265,7 +288,6 @@
         private System.Windows.Forms.Label lblGroup;
         private System.Windows.Forms.Button btnStartGame;
         private System.Windows.Forms.Label lblHighScore;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.Label lblPlayerHighScore;
         private System.Windows.Forms.PictureBox heart1;
@@ -273,6 +295,8 @@
         private System.Windows.Forms.PictureBox heart3;
         private System.Windows.Forms.PictureBox backBtn;
         private CustomTitleBarControl customTitleBarControl1;
+        private System.Windows.Forms.Timer directionTimer;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
