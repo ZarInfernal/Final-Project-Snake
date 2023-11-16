@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Media;
+﻿    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using System.Media;
 using Snake.Properties;
 
 
@@ -17,7 +17,13 @@ namespace Snake
     {
         // Game Stuff
         private StartScreen startScreen;
+        private SoundPlayer bgMusicPlayer;
+        private SoundPlayer bgGamePlayer;
+        
+        private bool IsGameMusicEnabled = true;
         private bool isGameStarted = false;
+
+
 
         // Player
         private SnakePlayer snake;
@@ -46,8 +52,9 @@ namespace Snake
         {
             InitializeComponent();
 
-            // Initialize instances with new audio
-            SoundManager.InitializeBackgroundMusic();
+            // Initialize SoundPlayer instances with audio files
+            bgMusicPlayer = new SoundPlayer(Properties.Resources.bgForm); // The original background music
+            bgGamePlayer = new SoundPlayer(Properties.Resources.bgGame); // New background audio for the game
 
             this.startScreen = startScreen; // Initialize the startScreen variable
 
@@ -62,27 +69,8 @@ namespace Snake
             lblHighScore.Text = "HIGH SCORE: 0";
            //To Update All Time High Score
             LoadAllTimeHighScore();
-            LoadGameSettings();
-        }
 
-        private void LoadGameSettings()
-        {
-            if (isGameStarted)
-            {
-                if(!SoundManager.gameMusicPlayer.IsLoadCompleted)
-                {
-                    SoundManager.gameMusicPlayer.Load();
-                }
-                if (GameSettings.GameSoundEnabled)
-                    SoundManager.PlayGameMusic();
-                SoundManager.StopBackgroundMusic();
-            }
-            else if (!GameSettings.GameSoundEnabled || !isGameStarted)
-            {
-                SoundManager.StopGameMusic();
-                if (GameSettings.BackgroundMusicEnabled)
-                    SoundManager.PlayBackgroundMusic();
-            }
+          
         }
 
 
@@ -97,8 +85,13 @@ namespace Snake
         private void btnStartGame_Click(object sender, EventArgs e)
         {
             // Stop the background music
-            SoundManager.StopBackgroundMusic();
+            bgMusicPlayer.Stop();
 
+            // Start the game background audio if enabled
+            if (IsGameMusicEnabled)
+            {
+                bgGamePlayer.PlayLooping();
+            }
 
             // Reset the game state
             snake = new SnakePlayer();
@@ -109,10 +102,7 @@ namespace Snake
             UpdatePlayerHighScoreLabel(); // Update the player's high score label
             pictureBox1.Invalidate();
 
-            // Start the game background audio if enabled
             isGameStarted = true;
-            LoadGameSettings();
-
         }
 
 
@@ -224,7 +214,7 @@ namespace Snake
         private void GameOver()
         {
             directionTimer.Stop(); // Stop the timer to freeze the game
-            SoundManager.PlayBackgroundMusic();   // Stop the game background audio
+            bgGamePlayer.Stop();   // Stop the game background audio
 
             // Show a game over message box
             MessageBox.Show("Game Over!", "Snake Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -249,28 +239,28 @@ namespace Snake
             pictureBox1.Invalidate();
         }
 
+
+
+
+
         private void customTitleBar_Paint(object sender, PaintEventArgs e)
         {
 
         }
-
-
 
         private void backBtn_Click(object sender, EventArgs e)
         {
             if (startScreen != null)
             {
                 // Stop the game background audio
-                SoundManager.StopBackgroundMusic();
-                SoundManager.StopGameMusic();
+                bgGamePlayer.Stop();
 
-                // Update the background music player based on the setting
-                if (GameSettings.BackgroundMusicEnabled)
-                    SoundManager.PlayBackgroundMusic();
+                // Start the background music
+                bgMusicPlayer.PlayLooping();
 
                 // Redirect to the home page
                 startScreen.Show();
-                this.Close();
+                this.Hide();
             }
         }
 
@@ -308,7 +298,7 @@ namespace Snake
         private void RestartGame()
         {
             directionTimer.Stop(); // Stop the timer
-            SoundManager.StopBackgroundMusic();   // Stop the game background audio
+            bgGamePlayer.Stop();   // Stop the game background audio
 
             // Show a confirmation message box
             DialogResult result = MessageBox.Show("Are you sure you want to restart the game?", "Restart Game", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -407,5 +397,18 @@ namespace Snake
             lblHighScore.Text = "HIGH SCORE: " + allTimeHighScore;
             SaveAllTimeHighScore(); // Save the high score whenever it is updated
         }
+
+
+
+
+
     }
+
+
+
+
+
+
+
+
 }
