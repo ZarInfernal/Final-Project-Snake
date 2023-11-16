@@ -34,5 +34,41 @@ namespace Snake.Properties {
                 this["allTimeHighScore"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool BackgroundMusicEnabled {
+            get {
+                return ((bool)(this["BackgroundMusicEnabled"]));
+            }
+            set {
+                this["BackgroundMusicEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ClickSoundEnabled {
+            get {
+                return ((bool)(this["ClickSoundEnabled"]));
+            }
+            set {
+                this["ClickSoundEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool GameSoundEnabled {
+            get {
+                return ((bool)(this["GameSoundEnabled"]));
+            }
+            set {
+                this["GameSoundEnabled"] = value;
+            }
+        }
     }
 }

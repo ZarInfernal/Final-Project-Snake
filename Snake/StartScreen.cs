@@ -6,11 +6,6 @@ namespace Snake
 {
     public partial class StartScreen : Form
     {
-        public static SoundPlayer backgroundMusicPlayer;
-        public SoundPlayer clickSoundPlayer;
-
-        public static bool isMusicPlaying = false;
-
         public StartScreen()
         {
             InitializeComponent();
@@ -65,26 +60,24 @@ namespace Snake
 
         private void StartScreen_Load(object sender, EventArgs e)
         {
-            if (backgroundMusicPlayer == null)
+            try
             {
-                // Initialize the background music player using the resource
-                backgroundMusicPlayer = new SoundPlayer(Properties.Resources.bgForm);
+                SoundManager.InitializeBackgroundMusic();
 
-                // Start playing the background music in a loop
-                backgroundMusicPlayer.PlayLooping();
-                StartScreen.isMusicPlaying = true; // Music is initially playing
+                ApplySettings();
             }
-
-            clickSoundPlayer = new SoundPlayer(Properties.Resources.blipSelect);
-
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading sound resources: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void StartScreen_Click(object sender, EventArgs e)
         {
-            if (clickSoundPlayer != null)
+            if (SoundManager.clickSoundPlayer != null)
             {
                 // Play the click sound when the form is clicked
-                clickSoundPlayer.Play();
+                SoundManager.clickSoundPlayer.Play();
             }
         }
 
@@ -93,8 +86,31 @@ namespace Snake
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             // Stop the background music when the form is closed
-            backgroundMusicPlayer.Stop();
+            SoundManager.StopBackgroundMusic();
             base.OnFormClosing(e);
+        }
+
+        private void ApplySettings()
+        {
+            // Apply background music setting
+            if (GameSettings.BackgroundMusicEnabled && SoundManager.BackgroundMusicPlayer.IsLoadCompleted)
+            {
+                SoundManager.BackgroundMusicPlayer.PlayLooping();
+            }
+            else if (!GameSettings.BackgroundMusicEnabled)
+            {
+                SoundManager.BackgroundMusicPlayer.Stop();
+            }
+
+            // Apply click sound setting
+            if(GameSettings.ClickSoundEnabled)
+            {
+                SoundManager.clickSoundPlayer = new SoundPlayer(Properties.Resources.blipSelect);
+            }
+            else
+            {
+                SoundManager.clickSoundPlayer = null;
+            }
         }
     }
 }

@@ -8,16 +8,13 @@ using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Snake.Properties;
 
 namespace Snake
 {
     public partial class SettingsForm : Form
     {
         private StartScreen startScreen;
-        private SoundPlayer clickSoundPlayer;
-    
-
-
 
         public SettingsForm(StartScreen startScreen)
         {
@@ -25,38 +22,34 @@ namespace Snake
             this.startScreen = startScreen;
 
             // Set the music switch to ON initially
-            musicSwitch.Checked = StartScreen.backgroundMusicPlayer.IsLoadCompleted;
-            clickSoundSwitch.Checked = true;
-            gameSoundSwtich.Checked = true;
+            musicSwitch.Checked = GameSettings.BackgroundMusicEnabled;
+            clickSoundSwitch.Checked = GameSettings.ClickSoundEnabled;
+            gameSoundSwtich.Checked = GameSettings.GameSoundEnabled;
 
             // Handle the initial state
             musicSwitch_CheckedChanged(null, null);
+            clickSoundSwitch_CheckedChanged(null, null);
         }
 
         private void musicSwitch_CheckedChanged(object sender, EventArgs e)
         {
+            GameSettings.BackgroundMusicEnabled = musicSwitch.Checked;
             if (musicSwitch.Checked)
             {
-                // If the switch is checked (music should play), and the music is not already playing, start it.
-                if (!StartScreen.isMusicPlaying)
-                {
-                    StartScreen.backgroundMusicPlayer.PlayLooping();
-                    StartScreen.isMusicPlaying = true;
-                }
+                SoundManager.PlayBackgroundMusic();
             }
             else
             {
                 // If the switch is unchecked (music should stop), stop the background music, and update the state.
-                StartScreen.backgroundMusicPlayer.Stop();
-                StartScreen.isMusicPlaying = false;
+                SoundManager.StopBackgroundMusic();
             }
         }
 
 
-        private void btnPlay_Click(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
             startScreen.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void pnlButtonMin_Click(object sender, EventArgs e)
@@ -71,17 +64,18 @@ namespace Snake
         }
 
 
-        private void clickSoundSwtich_CheckedChanged(object sender, EventArgs e)
+        private void clickSoundSwitch_CheckedChanged(object sender, EventArgs e)
         {
+            GameSettings.ClickSoundEnabled = clickSoundSwitch.Checked;
             if (clickSoundSwitch.Checked)
             {
                 // If the switch is checked, create the clickSoundPlayer
-                clickSoundPlayer = new SoundPlayer(Properties.Resources.blipSelect);
+                SoundManager.clickSoundPlayer = new SoundPlayer(Properties.Resources.blipSelect);
             }
             else
             {
                 // If the switch is unchecked, set clickSoundPlayer to null
-                clickSoundPlayer = null;
+                SoundManager.clickSoundPlayer = null;
             }
         }
 
@@ -89,22 +83,21 @@ namespace Snake
 
         private void gameSoundSwitch_Click(object sender, EventArgs e)
         {
-            //// Toggle the game music on or off based on the switch state
-            //if (gameSoundSwitch.Checked)
-            //{
-            //    MainForm.bgGamePlayer.PlayLooping(); // Play the game music
-            //                                         // Save the user's preference (e.g., in settings or a variable)
-            //    MainForm.IsGameMusicEnabled = true;
-            //}
-            //else
-            //{
-            //    MainForm.bgGamePlayer.Stop(); // Stop the game music
-            //                                  // Save the user's preference (e.g., in settings or a variable)
-            //    MainForm.IsGameMusicEnabled = false;
-            //}
+            // Toggle the game music on or off based on the switch state
+            GameSettings.GameSoundEnabled = gameSoundSwtich.Checked;
+            if (gameSoundSwtich.Checked)
+            {
+                // If the switch is checked, create the gameMusicPlayer
+                SoundManager.gameMusicPlayer = new SoundPlayer(Resources.bgGame);
+            }
+            else
+            {
+                // If the switch is unchecked, set gameMusicPlayer to null
+                SoundManager.gameMusicPlayer = null;
+            }
         }
     }
-    }
+}
 
 
 
