@@ -11,8 +11,13 @@ namespace Snake
         int speed = 20;
         public enum Direction { Up, Down, Left, Right, NONE };
         public Direction direction;
-        LinearGradientBrush bodyColor = new LinearGradientBrush(new Point(-10, 550), new Point(560, -10), Color.White, Color.White);
-        LinearGradientBrush headColor = new LinearGradientBrush(new Point(-10, 550), new Point(560, -10), Color.Blue, Color.Blue);
+        LinearGradientBrush bodyGradient = new LinearGradientBrush(new Point(0, 0), new Point(0, 20), Color.FromArgb(255, 204, 0), // tail color
+        Color.FromArgb(255, 87, 51)); // head color
+
+        // Head color
+        SolidBrush headColor = new SolidBrush(Color.Blue);
+        // Outline 
+        Pen outlinePen = new Pen(Color.Black, 2);
         private int x = 240;
         private int y = 400;
         private int width = 20;
@@ -34,9 +39,17 @@ namespace Snake
 
         public void Draw(Graphics g)
         {
-            for (int i = Body.Length - 1; i > 0; i--)
-                g.FillEllipse(bodyColor, Body[i]);
+            for (int i = 0; i < Body.Length; i++)
+            {
 
+                // Draw outline
+                g.DrawEllipse(outlinePen, Body[i].X, Body[i].Y, Body[i].Width, Body[i].Height);
+
+                // Fill with gradient 
+                g.FillEllipse(bodyGradient, Body[i]);
+            }
+
+            // Draw head
             g.FillEllipse(headColor, Body[0]);
         }
 

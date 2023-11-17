@@ -33,7 +33,7 @@
             this.lblGroup = new System.Windows.Forms.Label();
             this.btnStartGame = new System.Windows.Forms.Button();
             this.lblHighScore = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxDiff = new System.Windows.Forms.ComboBox();
             this.lblScore = new System.Windows.Forms.Label();
             this.lblPlayerHighScore = new System.Windows.Forms.Label();
             this.directionTimer = new System.Windows.Forms.Timer(this.components);
@@ -59,7 +59,7 @@
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.lblTitle.Location = new System.Drawing.Point(204, 102);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(360, 69);
+            this.lblTitle.Size = new System.Drawing.Size(241, 47);
             this.lblTitle.TabIndex = 16;
             this.lblTitle.Text = "SNAKE GAME";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -71,7 +71,7 @@
             this.lblGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.lblGroup.Location = new System.Drawing.Point(1010, 102);
             this.lblGroup.Name = "lblGroup";
-            this.lblGroup.Size = new System.Drawing.Size(261, 69);
+            this.lblGroup.Size = new System.Drawing.Size(176, 47);
             this.lblGroup.TabIndex = 17;
             this.lblGroup.Text = "Group 8   ";
             this.lblGroup.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -97,18 +97,18 @@
             this.lblHighScore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.lblHighScore.Location = new System.Drawing.Point(1002, 492);
             this.lblHighScore.Name = "lblHighScore";
-            this.lblHighScore.Size = new System.Drawing.Size(0, 43);
+            this.lblHighScore.Size = new System.Drawing.Size(0, 30);
             this.lblHighScore.TabIndex = 30;
             this.lblHighScore.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // comboBox1
+            // comboBoxDiff
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.Teal;
-            this.comboBox1.Location = new System.Drawing.Point(1034, 558);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(170, 28);
-            this.comboBox1.TabIndex = 31;
-            this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox1_KeyDown);
+            this.comboBoxDiff.BackColor = System.Drawing.Color.Teal;
+            this.comboBoxDiff.Location = new System.Drawing.Point(1034, 558);
+            this.comboBoxDiff.Name = "comboBoxDiff";
+            this.comboBoxDiff.Size = new System.Drawing.Size(170, 28);
+            this.comboBoxDiff.TabIndex = 31;
+            this.comboBoxDiff.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox1_KeyDown);
             // 
             // lblScore
             // 
@@ -117,7 +117,7 @@
             this.lblScore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.lblScore.Location = new System.Drawing.Point(1034, 622);
             this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(0, 43);
+            this.lblScore.Size = new System.Drawing.Size(0, 30);
             this.lblScore.TabIndex = 32;
             this.lblScore.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -128,7 +128,7 @@
             this.lblPlayerHighScore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.lblPlayerHighScore.Location = new System.Drawing.Point(930, 683);
             this.lblPlayerHighScore.Name = "lblPlayerHighScore";
-            this.lblPlayerHighScore.Size = new System.Drawing.Size(0, 43);
+            this.lblPlayerHighScore.Size = new System.Drawing.Size(0, 30);
             this.lblPlayerHighScore.TabIndex = 33;
             this.lblPlayerHighScore.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -178,9 +178,9 @@
             // 
             // heart3
             // 
-            this.heart3.BackColor = System.Drawing.Color.Teal;
+            this.heart3.BackColor = System.Drawing.Color.Transparent;
             this.heart3.Image = global::Snake.Properties.Resources.heart;
-            this.heart3.Location = new System.Drawing.Point(784, 235);
+            this.heart3.Location = new System.Drawing.Point(782, 164);
             this.heart3.Name = "heart3";
             this.heart3.Size = new System.Drawing.Size(58, 58);
             this.heart3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -189,9 +189,9 @@
             // 
             // heart2
             // 
-            this.heart2.BackColor = System.Drawing.Color.Teal;
+            this.heart2.BackColor = System.Drawing.Color.Transparent;
             this.heart2.Image = global::Snake.Properties.Resources.heart;
-            this.heart2.Location = new System.Drawing.Point(720, 235);
+            this.heart2.Location = new System.Drawing.Point(718, 164);
             this.heart2.Name = "heart2";
             this.heart2.Size = new System.Drawing.Size(58, 58);
             this.heart2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -200,10 +200,10 @@
             // 
             // heart1
             // 
-            this.heart1.BackColor = System.Drawing.Color.Teal;
+            this.heart1.BackColor = System.Drawing.Color.Transparent;
             this.heart1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.heart1.Image = global::Snake.Properties.Resources.heart;
-            this.heart1.Location = new System.Drawing.Point(656, 235);
+            this.heart1.Location = new System.Drawing.Point(657, 164);
             this.heart1.Margin = new System.Windows.Forms.Padding(0);
             this.heart1.Name = "heart1";
             this.heart1.Size = new System.Drawing.Size(58, 58);
@@ -243,7 +243,7 @@
             this.Controls.Add(this.heart1);
             this.Controls.Add(this.lblPlayerHighScore);
             this.Controls.Add(this.lblScore);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxDiff);
             this.Controls.Add(this.lblHighScore);
             this.Controls.Add(this.btnStartGame);
             this.Controls.Add(this.lblGroup);
@@ -253,6 +253,7 @@
             this.KeyPreview = true;
             this.Name = "MainForm";
             this.Text = "Snake Game";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.backBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart3)).EndInit();
@@ -281,7 +282,7 @@
         private System.Windows.Forms.PictureBox backBtn;
         private CustomTitleBarControl customTitleBarControl1;
         private System.Windows.Forms.Timer directionTimer;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxDiff;
     }
 }
 

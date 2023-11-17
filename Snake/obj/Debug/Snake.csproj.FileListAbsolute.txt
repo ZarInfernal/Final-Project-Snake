@@ -24,3 +24,16 @@ C:\Users\mhieb\Desktop\Final-Project-Snake\Snake\obj\Debug\Snake.pdb
 C:\Users\mhieb\Desktop\Final-Project-Snake\Snake\bin\Debug\Snake.exe.config
 C:\Users\mhieb\Desktop\Final-Project-Snake\Snake\bin\Debug\Snake.exe
 C:\Users\mhieb\Desktop\Final-Project-Snake\Snake\bin\Debug\Snake.pdb
+C:\Users\leo88\OneDrive\Documentos\GitHub\Final-Project-Snake\Snake\bin\Debug\Snake.exe.config
+C:\Users\leo88\OneDrive\Documentos\GitHub\Final-Project-Snake\Snake\bin\Debug\Snake.exe
+C:\Users\leo88\OneDrive\Documentos\GitHub\Final-Project-Snake\Snake\bin\Debug\Snake.pdb
+C:\Users\leo88\OneDrive\Documentos\GitHub\Final-Project-Snake\Snake\obj\Debug\Snake.csproj.AssemblyReference.cache
+C:\Users\leo88\OneDrive\Documentos\GitHub\Final-Project-Snake\Snake\obj\Debug\CustomTitleBarControl.resources
+C:\Users\leo88\OneDrive\Documentos\GitHub\Final-Project-Snake\Snake\obj\Debug\Snake.MainForm.resources
+C:\Users\leo88\OneDrive\Documentos\GitHub\Final-Project-Snake\Snake\obj\Debug\Snake.Properties.Resources.resources
+C:\Users\leo88\OneDrive\Documentos\GitHub\Final-Project-Snake\Snake\obj\Debug\Snake.SettingsForm.resources
+C:\Users\leo88\OneDrive\Documentos\GitHub\Final-Project-Snake\Snake\obj\Debug\Snake.StartScreen.resources
+C:\Users\leo88\OneDrive\Documentos\GitHub\Final-Project-Snake\Snake\obj\Debug\Snake.csproj.GenerateResource.cache
+C:\Users\leo88\OneDrive\Documentos\GitHub\Final-Project-Snake\Snake\obj\Debug\Snake.csproj.CoreCompileInputs.cache
+C:\Users\leo88\OneDrive\Documentos\GitHub\Final-Project-Snake\Snake\obj\Debug\Snake.exe
+C:\Users\leo88\OneDrive\Documentos\GitHub\Final-Project-Snake\Snake\obj\Debug\Snake.pdb

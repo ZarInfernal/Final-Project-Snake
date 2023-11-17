@@ -45,7 +45,8 @@ namespace Snake
         private int[] levelThresholds = { 20, 30, 50 };
         private Color[] levelColors = { Color.LightBlue, Color.LightGreen, Color.LightPink };
 
-
+        //Difficulty
+        private int difficultyLevel;
 
 
         public MainForm(StartScreen startScreen)
@@ -129,7 +130,7 @@ namespace Snake
             {
                 snake.Grow();
                 GenerateFood(); // Generate new food after eating
-                score++; // Increase the score
+                score += GetScoreIncrement(); // Increase the score
                 UpdateScoreLabel();
 
                 // Update current player's high score
@@ -156,6 +157,23 @@ namespace Snake
             {
                 // Snake hit the bounds, handle health and game over
                 HandleHit();
+            }
+        }
+
+        // Return the score increment based on the difficulty level
+        private int GetScoreIncrement()
+        {
+            // Return the score increment based on the difficulty level
+            switch (difficultyLevel)
+            {
+                case 1: // EASY
+                    return 1;
+                case 2: // MEDIUM
+                    return 2;
+                case 3: // HARD
+                    return 3;
+                default:
+                    return 1; // Default to EASY
             }
         }
 
@@ -398,10 +416,46 @@ namespace Snake
             SaveAllTimeHighScore(); // Save the high score whenever it is updated
         }
 
+        
 
+        private void SetDifficultyLevel()
+        {
+            switch (comboBoxDiff.SelectedItem.ToString())
+            {
+                case "EASY":
+                    difficultyLevel = 1;
+                    break;
+                case "MEDIUM":
+                    difficultyLevel = 2;
+                    break;
+                case "HARD":
+                    difficultyLevel = 3;
+                    break;
+                default:
+                    difficultyLevel = 1; // Default to EASY
+                    break;
+            }
+        }
 
+        private void ComboBoxDiff_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetDifficultyLevel();
+        }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            //add difficulty options to the combo box
+            comboBoxDiff.Items.Add("EASY");
+            comboBoxDiff.Items.Add("MEDIUM");
+            comboBoxDiff.Items.Add("HARD");
+            comboBoxDiff.SelectedIndex = 0;
 
+            // Initialize the difficulty level based on the selected item
+            SetDifficultyLevel();
+
+            // Event handler for the SelectedIndexChanged event
+            comboBoxDiff.SelectedIndexChanged += ComboBoxDiff_SelectedIndexChanged;
+        }
     }
 
 
