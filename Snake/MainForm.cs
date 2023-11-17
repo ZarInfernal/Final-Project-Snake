@@ -78,9 +78,30 @@ namespace Snake
         private void GenerateFood()
         {
             Random random = new Random();
-            int x = random.Next(0, pictureBox1.Width - food.Position.Width);
-            int y = random.Next(0, pictureBox1.Height - food.Position.Height);
+
+            // Generate a new random position for the food
+            int x, y;
+            do
+            {
+                x = random.Next(0, pictureBox1.Width - food.Position.Width);
+                y = random.Next(0, pictureBox1.Height - food.Position.Height);
+            } while (snake.Body.Any(bodyPart => bodyPart.IntersectsWith(new Rectangle(x, y, food.Position.Width, food.Position.Height))));
+
             food.Position.Location = new Point(x, y);
+        }
+
+        public void ToggleGameMusic(bool enable)
+        {
+            if (enable)
+            {
+                bgGamePlayer.PlayLooping();
+                IsGameMusicEnabled = true;
+            }
+            else
+            {
+                bgGamePlayer.Stop();
+                IsGameMusicEnabled = false;
+            }
         }
 
         private void btnStartGame_Click(object sender, EventArgs e)
@@ -192,10 +213,7 @@ namespace Snake
                 }
             }
 
-            // Set the BackColor property of hearts to match the color of pictureBox1
-            heart1.BackColor = pictureBox1.BackColor;
-            heart2.BackColor = pictureBox1.BackColor;
-            heart3.BackColor = pictureBox1.BackColor;
+          
         }
 
 
@@ -270,17 +288,20 @@ namespace Snake
         {
             if (startScreen != null)
             {
-                // Stop the game background audio
-                bgGamePlayer.Stop();
-
-                // Start the background music
-                bgMusicPlayer.PlayLooping();
+                // Stop the game background audio only if the game is started
+                if (isGameStarted)
+                {
+                    bgGamePlayer.Stop();
+                }
 
                 // Redirect to the home page
                 startScreen.Show();
                 this.Hide();
             }
         }
+
+
+
 
         private void pnlButtonMin_Click(object sender, EventArgs e)
         {

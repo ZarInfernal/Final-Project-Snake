@@ -216,7 +216,7 @@
             this.gameSoundSwtich.SolidStyle = true;
             this.gameSoundSwtich.TabIndex = 26;
             this.gameSoundSwtich.UseVisualStyleBackColor = true;
-            this.gameSoundSwtich.CheckedChanged += new System.EventHandler(this.gameSoundSwitch_Click);
+            this.gameSoundSwtich.CheckedChanged += new System.EventHandler(this.gameSoundSwtich_CheckedChanged);
             // 
             // clickSoundSwitch
             // 
