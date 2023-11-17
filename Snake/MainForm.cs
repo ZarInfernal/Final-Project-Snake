@@ -450,6 +450,9 @@ namespace Snake
             comboBoxDiff.Items.Add("HARD");
             comboBoxDiff.SelectedIndex = 0;
 
+            // Set read-only mode for the combo box
+            comboBoxDiff.DropDownStyle = ComboBoxStyle.DropDownList;
+
             // Initialize the difficulty level based on the selected item
             SetDifficultyLevel();
 
