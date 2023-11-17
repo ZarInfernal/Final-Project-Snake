@@ -6,11 +6,14 @@ namespace Snake
 {
     public partial class StartScreen : Form
     {
+        #region Variables
         public static SoundPlayer backgroundMusicPlayer;
         public SoundPlayer clickSoundPlayer;
 
         public static bool isMusicPlaying = false;
+        #endregion
 
+        #region Startup
         public StartScreen()
         {
             InitializeComponent();
@@ -21,7 +24,24 @@ namespace Snake
             btnPlay.FlatAppearance.BorderSize = 0;
             btnExit.FlatAppearance.BorderSize = 0;
         }
+        private void StartScreen_Load(object sender, EventArgs e)
+        {
+            if (backgroundMusicPlayer == null)
+            {
+                // Initialize the background music player using the resource
+                backgroundMusicPlayer = new SoundPlayer(Properties.Resources.bgForm);
 
+                // Start playing the background music in a loop
+                backgroundMusicPlayer.PlayLooping();
+                StartScreen.isMusicPlaying = true; // Music is initially playing
+            }
+
+            clickSoundPlayer = new SoundPlayer(Properties.Resources.blipSelect);
+
+        }
+        #endregion
+
+        #region Buttons
         private void btnPlay_Click(object sender, EventArgs e)
         {
             MainForm mainForm = new MainForm(this); 
@@ -48,9 +68,6 @@ namespace Snake
             MessageBox.Show("This is Group 8 Snake Game Project");
         }
 
-
-   
-
         private void pnlButtonMin_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
@@ -62,22 +79,7 @@ namespace Snake
             this.Hide();
             Environment.Exit(0);
         }
-
-        private void StartScreen_Load(object sender, EventArgs e)
-        {
-            if (backgroundMusicPlayer == null)
-            {
-                // Initialize the background music player using the resource
-                backgroundMusicPlayer = new SoundPlayer(Properties.Resources.bgForm);
-
-                // Start playing the background music in a loop
-                backgroundMusicPlayer.PlayLooping();
-                StartScreen.isMusicPlaying = true; // Music is initially playing
-            }
-
-            clickSoundPlayer = new SoundPlayer(Properties.Resources.blipSelect);
-
-        }
+        #endregion
 
         private void StartScreen_Click(object sender, EventArgs e)
         {
@@ -87,8 +89,6 @@ namespace Snake
                 clickSoundPlayer.Play();
             }
         }
-
-
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {

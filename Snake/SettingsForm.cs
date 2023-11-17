@@ -9,19 +9,20 @@ using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Snake.Properties;
 
 namespace Snake
 {
     public partial class SettingsForm : Form
     {
+        #region Variables
         private StartScreen startScreen;
         private MainForm mainForm;
         private SoundPlayer clickSoundPlayer;
         private CheckBox gameSoundSwitch;
+        #endregion
 
-
-
-
+        #region Startup
         public SettingsForm(StartScreen startScreen)
         {
             InitializeComponent();
@@ -30,9 +31,9 @@ namespace Snake
 
 
             // Set the music switch to the value saved in settings
-            musicSwitch.Checked = Properties.Settings.Default.IsMusicSwitchOn;
-            clickSoundSwitch.Checked = Properties.Settings.Default.IsClickSoundSwitchOn;
-            gameSoundSwtich.Checked = Properties.Settings.Default.IsGameSoundSwitchOn;
+            musicSwitch.Checked = Settings.Default.IsMusicSwitchOn;
+            clickSoundSwitch.Checked = Settings.Default.IsClickSoundSwitchOn;
+            gameSoundSwtich.Checked = Settings.Default.IsGameSoundSwitchOn;
 
             // Handle the initial state
             musicSwitch_CheckedChanged(null, null);
@@ -41,7 +42,28 @@ namespace Snake
 
 
         }
+        #endregion
 
+        #region Buttons
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            startScreen.Show();
+            this.Hide();
+        }
+
+        private void pnlButtonMin_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void pnlButtonClose_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Environment.Exit(0);
+        }
+        #endregion
+
+        #region Switch Checks
         private void musicSwitch_CheckedChanged(object sender, EventArgs e)
         {
             if (musicSwitch.Checked)
@@ -61,30 +83,9 @@ namespace Snake
             }
 
             // Update the setting when the switch changes
-            Properties.Settings.Default.IsMusicSwitchOn = musicSwitch.Checked;
-            Properties.Settings.Default.Save();
+            Settings.Default.IsMusicSwitchOn = musicSwitch.Checked;
+            Settings.Default.Save();
         }
-
-
-
-
-        private void btnPlay_Click(object sender, EventArgs e)
-        {
-            startScreen.Show();
-            this.Hide();
-        }
-
-        private void pnlButtonMin_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void pnlButtonClose_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Environment.Exit(0);
-        }
-
 
         private void clickSoundSwtich_CheckedChanged(object sender, EventArgs e)
         {
@@ -100,13 +101,9 @@ namespace Snake
             }
 
             // Update the setting when the switch changes
-            Properties.Settings.Default.IsMusicSwitchOn = musicSwitch.Checked;
-            Properties.Settings.Default.Save();
+            Settings.Default.IsMusicSwitchOn = musicSwitch.Checked;
+            Settings.Default.Save();
         }
-
-
-
-       
 
         private void gameSoundSwtich_CheckedChanged(object sender, EventArgs e)
         {
@@ -114,9 +111,10 @@ namespace Snake
             mainForm.ToggleGameMusic(gameSoundSwitch.Checked);
 
             // Update the setting when the switch changes
-            Properties.Settings.Default.IsGameSoundSwitchOn = gameSoundSwitch.Checked;
-            Properties.Settings.Default.Save();
+            Settings.Default.IsGameSoundSwitchOn = gameSoundSwitch.Checked;
+            Settings.Default.Save();
         }
+        #endregion
     }
 }
 

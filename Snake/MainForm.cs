@@ -15,6 +15,7 @@ namespace Snake
 {
     public partial class MainForm : Form
     {
+        #region Variables
         // Game Stuff
         private StartScreen startScreen;
         private SoundPlayer bgMusicPlayer;
@@ -47,8 +48,9 @@ namespace Snake
 
         //Difficulty
         private int difficultyLevel;
+        #endregion
 
-
+        #region StartUp
         public MainForm(StartScreen startScreen)
         {
             InitializeComponent();
@@ -73,37 +75,27 @@ namespace Snake
 
           
         }
-
-
-        private void GenerateFood()
+        private void MainForm_Load(object sender, EventArgs e)
         {
-            Random random = new Random();
+            //add difficulty options to the combo box
+            comboBoxDiff.Items.Add("EASY");
+            comboBoxDiff.Items.Add("MEDIUM");
+            comboBoxDiff.Items.Add("HARD");
+            comboBoxDiff.SelectedIndex = 0;
 
-            // Generate a new random position for the food
-            int x, y;
-            do
-            {
-                x = random.Next(0, pictureBox1.Width - food.Position.Width);
-                y = random.Next(0, pictureBox1.Height - food.Position.Height);
-            } while (snake.Body.Any(bodyPart => bodyPart.IntersectsWith(new Rectangle(x, y, food.Position.Width, food.Position.Height))));
+            // Set read-only mode for the combo box
+            comboBoxDiff.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            food.Position.Location = new Point(x, y);
+            // Initialize the difficulty level based on the selected item
+            SetDifficultyLevel();
+
+            // Event handler for the SelectedIndexChanged event
+            comboBoxDiff.SelectedIndexChanged += ComboBoxDiff_SelectedIndexChanged;
         }
 
-        public void ToggleGameMusic(bool enable)
-        {
-            if (enable)
-            {
-                bgGamePlayer.PlayLooping();
-                IsGameMusicEnabled = true;
-            }
-            else
-            {
-                bgGamePlayer.Stop();
-                IsGameMusicEnabled = false;
-            }
-        }
+        #endregion
 
+        #region Event Handlers
         private void btnStartGame_Click(object sender, EventArgs e)
         {
             // Stop the background music
@@ -127,8 +119,251 @@ namespace Snake
             isGameStarted = true;
         }
 
+        private void backBtn_Click(object sender, EventArgs e)
+        {
+            if (startScreen != null)
+            {
+                // Stop the game background audio only if the game is started
+                if (isGameStarted)
+                {
+                    bgGamePlayer.Stop();
+                }
+
+                // Redirect to the home page
+                startScreen.Show();
+                this.Hide();
+            }
+        }
+
+        private void pnlButtonMin_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void pnlButtonClose_Click(object sender, EventArgs e)
+        {
+
+            this.Hide();
+            Environment.Exit(0);
+        }
+        #endregion
+
+        #region Key Presses
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Up: // Change Direction Up
+                case Keys.W:
+                    if (snake.direction != SnakePlayer.Direction.Down) // Add more restrictions later
+                        snake.direction = SnakePlayer.Direction.Up;
+                    break;
+                case Keys.Down: // Change Direction Down
+                case Keys.S:
+                    if (snake.direction != SnakePlayer.Direction.Up) // Add more restrictions later
+                        snake.direction = SnakePlayer.Direction.Down;
+                    break;
+                case Keys.Left: // Change Direction Left
+                case Keys.A:
+                    if (snake.direction != SnakePlayer.Direction.Right) // Add more restrictions later
+                        snake.direction = SnakePlayer.Direction.Left;
+                    break;
+                case Keys.Right: // Change Direction Right
+                case Keys.D:
+                    if (snake.direction != SnakePlayer.Direction.Left) // Add more restrictions later
+                        snake.direction = SnakePlayer.Direction.Right;
+                    break;
+                case Keys.P: // Pause the game
+                    PauseGame();
+                    break;
+                case Keys.R: // Restart the game
+                    RestartGame();
+                    break;
+            }
+        }
+
+        private void comboBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        #endregion
+
+        #region Timer Events
+        private void directionTimer_Tick(object sender, EventArgs e)
+        {
+            snake.Move(); // Set the direction of the snake
+            CheckCollisions();
+            pictureBox1.Invalidate();
+
+        }
+        #endregion
+
+        #region Game Events
+        private void GameOver()
+        {
+            directionTimer.Stop(); // Stop the timer to freeze the game
+            bgGamePlayer.Stop();   // Stop the game background audio
+
+            // Show a game over message box
+            MessageBox.Show("Game Over!", "Snake Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Reset the game state
+            snakeHealth = 3;
+            heart1.Visible = true;
+            heart2.Visible = true;
+            heart3.Visible = true;
+
+            score = 0;
+            currentLevel = 1;
+            UpdateScoreLabel();
+
+            // Reset background color to the first level color
+            pictureBox1.BackColor = levelColors[0];
+
+            // Restart the game
+            directionTimer.Start();
+            snake = new SnakePlayer();
+            GenerateFood(); // Generate initial food position
+            pictureBox1.Invalidate();
+        }
+
+        private void PauseGame()
+        {
+            directionTimer.Enabled = !directionTimer.Enabled; // Toggle the timer on/off for pausing
+        }
+
+        private void RestartGame()
+        {
+            directionTimer.Stop(); // Stop the timer
+            bgGamePlayer.Stop();   // Stop the game background audio
+
+            // Show a confirmation message box
+            DialogResult result = MessageBox.Show("Are you sure you want to restart the game?", "Restart Game", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Reset the game state
+                directionTimer.Start();
+                snake = new SnakePlayer();
+                GenerateFood(); // Generate initial food position
+                pictureBox1.Invalidate();
+            }
+            else
+            {
+                // If the user chooses not to restart, resume the game
+                directionTimer.Start();
+            }
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            snake.Draw(e.Graphics);
+            food.Draw(e.Graphics);
+        }
+        #endregion
+
+        #region Difficulty
+        private void SetDifficultyLevel()
+        {
+            switch (comboBoxDiff.SelectedItem.ToString())
+            {
+                case "EASY":
+                    difficultyLevel = 1;
+                    break;
+                case "MEDIUM":
+                    difficultyLevel = 2;
+                    break;
+                case "HARD":
+                    difficultyLevel = 3;
+                    break;
+                default:
+                    difficultyLevel = 1; // Default to EASY
+                    break;
+            }
+        }
+
+        private void ComboBoxDiff_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetDifficultyLevel();
+        }
+
+        private void CheckLevelChange()
+        {
+            // Check if the player reached the next level
+            if (score == levelThresholds[currentLevel - 1])
+            {
+                currentLevel++;
+
+                // Change the background color based on the level
+                if (currentLevel <= levelColors.Length)
+                {
+                    pictureBox1.BackColor = levelColors[currentLevel - 1];
+                }
+            }
+        }
+        #endregion
+
+        #region Score
+        // Return the score increment based on the difficulty level
+        private int GetScoreIncrement()
+        {
+            // Return the score increment based on the difficulty level
+            switch (difficultyLevel)
+            {
+                case 1: // EASY
+                    return 1;
+                case 2: // MEDIUM
+                    return 2;
+                case 3: // HARD
+                    return 3;
+                default:
+                    return 1; // Default to EASY
+            }
+        }
+
+        private void UpdateScoreLabel()
+        {
+            lblScore.Text = "SCORE: " + score;
+        }
+
+        private void UpdatePlayerHighScoreLabel()
+        {
+            lblPlayerHighScore.Text = "PLAYER HIGH SCORE: " + currentPlayerHighScore;
+        }
 
 
+
+        private void SaveAllTimeHighScore()
+        {
+            string filePath = "AllTimeHighScore.txt";
+
+            // Save the all-time high score to the text file
+            System.IO.File.WriteAllText(filePath, allTimeHighScore.ToString());
+        }
+
+        private void LoadAllTimeHighScore()
+        {
+            string filePath = "AllTimeHighScore.txt";
+
+            // Check if the file exists before attempting to read it
+            if (System.IO.File.Exists(filePath))
+            {
+                // Read the content of the text file and parse it to an integer
+                string content = System.IO.File.ReadAllText(filePath);
+                int.TryParse(content, out allTimeHighScore);
+            }
+
+            UpdateAllTimeHighScoreLabel();
+        }
+        private void UpdateAllTimeHighScoreLabel()
+        {
+            lblHighScore.Text = "HIGH SCORE: " + allTimeHighScore;
+            SaveAllTimeHighScore(); // Save the high score whenever it is updated
+        }
+        #endregion
+
+        #region Collision
         private void CheckCollisions()
         {
             if (!isGameStarted)
@@ -181,44 +416,6 @@ namespace Snake
             }
         }
 
-        // Return the score increment based on the difficulty level
-        private int GetScoreIncrement()
-        {
-            // Return the score increment based on the difficulty level
-            switch (difficultyLevel)
-            {
-                case 1: // EASY
-                    return 1;
-                case 2: // MEDIUM
-                    return 2;
-                case 3: // HARD
-                    return 3;
-                default:
-                    return 1; // Default to EASY
-            }
-        }
-
-
-        private void CheckLevelChange()
-        {
-            // Check if the player reached the next level
-            if (score == levelThresholds[currentLevel - 1])
-            {
-                currentLevel++;
-
-                // Change the background color based on the level
-                if (currentLevel <= levelColors.Length)
-                {
-                    pictureBox1.BackColor = levelColors[currentLevel - 1];
-                }
-            }
-
-          
-        }
-
-
-
-
         private void HandleHit()
         {
             snakeHealth--; // Decrease health
@@ -243,250 +440,42 @@ namespace Snake
             GenerateFood(); // Generate initial food position
             pictureBox1.Invalidate();
         }
+        #endregion
 
-
-
-
-        private void GameOver()
+        #region Pickups (Food/Powerups)
+        private void GenerateFood()
         {
-            directionTimer.Stop(); // Stop the timer to freeze the game
-            bgGamePlayer.Stop();   // Stop the game background audio
+            Random random = new Random();
 
-            // Show a game over message box
-            MessageBox.Show("Game Over!", "Snake Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Generate a new random position for the food
+            int x, y;
+            do
+            {
+                x = random.Next(0, pictureBox1.Width - food.Position.Width);
+                y = random.Next(0, pictureBox1.Height - food.Position.Height);
+            } while (snake.Body.Any(bodyPart => bodyPart.IntersectsWith(new Rectangle(x, y, food.Position.Width, food.Position.Height))));
 
-            // Reset the game state
-            snakeHealth = 3;
-            heart1.Visible = true;
-            heart2.Visible = true;
-            heart3.Visible = true;
-
-            score = 0;
-            currentLevel = 1;
-            UpdateScoreLabel();
-
-            // Reset background color to the first level color
-            pictureBox1.BackColor = levelColors[0];
-
-            // Restart the game
-            directionTimer.Start();
-            snake = new SnakePlayer();
-            GenerateFood(); // Generate initial food position
-            pictureBox1.Invalidate();
+            food.Position.Location = new Point(x, y);
         }
+        #endregion
 
-
-
-
+        public void ToggleGameMusic(bool enable)
+        {
+            if (enable)
+            {
+                bgGamePlayer.PlayLooping();
+                IsGameMusicEnabled = true;
+            }
+            else
+            {
+                bgGamePlayer.Stop();
+                IsGameMusicEnabled = false;
+            }
+        }
 
         private void customTitleBar_Paint(object sender, PaintEventArgs e)
         {
 
         }
-
-        private void backBtn_Click(object sender, EventArgs e)
-        {
-            if (startScreen != null)
-            {
-                // Stop the game background audio only if the game is started
-                if (isGameStarted)
-                {
-                    bgGamePlayer.Stop();
-                }
-
-                // Redirect to the home page
-                startScreen.Show();
-                this.Hide();
-            }
-        }
-
-
-
-
-        private void pnlButtonMin_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void pnlButtonClose_Click(object sender, EventArgs e)
-        {
-
-            this.Hide();
-            Environment.Exit(0);
-        }
-
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
-        {
-            snake.Draw(e.Graphics);
-            food.Draw(e.Graphics);
-        }
-
-        private void directionTimer_Tick(object sender, EventArgs e)
-        {
-            snake.Move(); // Set the direction of the snake
-            CheckCollisions();
-            pictureBox1.Invalidate();
-
-        }
-
-        private void PauseGame()
-        {
-            directionTimer.Enabled = !directionTimer.Enabled; // Toggle the timer on/off for pausing
-        }
-
-        private void RestartGame()
-        {
-            directionTimer.Stop(); // Stop the timer
-            bgGamePlayer.Stop();   // Stop the game background audio
-
-            // Show a confirmation message box
-            DialogResult result = MessageBox.Show("Are you sure you want to restart the game?", "Restart Game", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                // Reset the game state
-                directionTimer.Start();
-                snake = new SnakePlayer();
-                GenerateFood(); // Generate initial food position
-                pictureBox1.Invalidate();
-            }
-            else
-            {
-                // If the user chooses not to restart, resume the game
-                directionTimer.Start();
-            }
-        }
-
-        private void MainForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Up: // Change Direction Up
-                case Keys.W:
-                    if (snake.direction != SnakePlayer.Direction.Down) // Add more restrictions later
-                        snake.direction = SnakePlayer.Direction.Up;
-                    break;
-                case Keys.Down: // Change Direction Down
-                case Keys.S:
-                    if (snake.direction != SnakePlayer.Direction.Up) // Add more restrictions later
-                        snake.direction = SnakePlayer.Direction.Down;
-                    break;
-                case Keys.Left: // Change Direction Left
-                case Keys.A:
-                    if (snake.direction != SnakePlayer.Direction.Right) // Add more restrictions later
-                        snake.direction = SnakePlayer.Direction.Left;
-                    break;
-                case Keys.Right: // Change Direction Right
-                case Keys.D:
-                    if (snake.direction != SnakePlayer.Direction.Left) // Add more restrictions later
-                        snake.direction = SnakePlayer.Direction.Right;
-                    break;
-                case Keys.P: // Pause the game
-                    PauseGame();
-                    break;
-                case Keys.R: // Restart the game
-                    RestartGame();
-                    break;
-            }
-        }
-
-
-        private void comboBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            e.Handled = true;
-        }
-
-
-        private void UpdateScoreLabel()
-        {
-            lblScore.Text = "SCORE: " + score;
-        }
-
-        private void UpdatePlayerHighScoreLabel()
-        {
-            lblPlayerHighScore.Text = "PLAYER HIGH SCORE: " + currentPlayerHighScore;
-        }
-
-
-
-        private void SaveAllTimeHighScore()
-        {
-            string filePath = "AllTimeHighScore.txt";
-
-            // Save the all-time high score to the text file
-            System.IO.File.WriteAllText(filePath, allTimeHighScore.ToString());
-        }
-
-        private void LoadAllTimeHighScore()
-        {
-            string filePath = "AllTimeHighScore.txt";
-
-            // Check if the file exists before attempting to read it
-            if (System.IO.File.Exists(filePath))
-            {
-                // Read the content of the text file and parse it to an integer
-                string content = System.IO.File.ReadAllText(filePath);
-                int.TryParse(content, out allTimeHighScore);
-            }
-
-            UpdateAllTimeHighScoreLabel();
-        }
-        private void UpdateAllTimeHighScoreLabel()
-        {
-            lblHighScore.Text = "HIGH SCORE: " + allTimeHighScore;
-            SaveAllTimeHighScore(); // Save the high score whenever it is updated
-        }
-
-        
-
-        private void SetDifficultyLevel()
-        {
-            switch (comboBoxDiff.SelectedItem.ToString())
-            {
-                case "EASY":
-                    difficultyLevel = 1;
-                    break;
-                case "MEDIUM":
-                    difficultyLevel = 2;
-                    break;
-                case "HARD":
-                    difficultyLevel = 3;
-                    break;
-                default:
-                    difficultyLevel = 1; // Default to EASY
-                    break;
-            }
-        }
-
-        private void ComboBoxDiff_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SetDifficultyLevel();
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            //add difficulty options to the combo box
-            comboBoxDiff.Items.Add("EASY");
-            comboBoxDiff.Items.Add("MEDIUM");
-            comboBoxDiff.Items.Add("HARD");
-            comboBoxDiff.SelectedIndex = 0;
-
-            // Set read-only mode for the combo box
-            comboBoxDiff.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            // Initialize the difficulty level based on the selected item
-            SetDifficultyLevel();
-
-            // Event handler for the SelectedIndexChanged event
-            comboBoxDiff.SelectedIndexChanged += ComboBoxDiff_SelectedIndexChanged;
-        }
     }
-
-
-
-
-
-
-
-
 }
