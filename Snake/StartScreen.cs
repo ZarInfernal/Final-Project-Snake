@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Snake.Properties;
+using System;
 using System.Media; // Add this namespace for SoundPlayer
 using System.Windows.Forms;
 
@@ -29,14 +30,17 @@ namespace Snake
             if (backgroundMusicPlayer == null)
             {
                 // Initialize the background music player using the resource
-                backgroundMusicPlayer = new SoundPlayer(Properties.Resources.bgForm);
+                backgroundMusicPlayer = new SoundPlayer(Resources.bgForm);
 
-                // Start playing the background music in a loop
-                backgroundMusicPlayer.PlayLooping();
-                StartScreen.isMusicPlaying = true; // Music is initially playing
+                // Start playing the background music in a loop if Music is on since last open
+                if (Settings.Default.IsMusicSwitchOn)
+                {
+                    backgroundMusicPlayer.PlayLooping();
+                    isMusicPlaying = true; // Music is initially playing
+                }
             }
 
-            clickSoundPlayer = new SoundPlayer(Properties.Resources.blipSelect);
+            clickSoundPlayer = new SoundPlayer(Resources.blipSelect);
 
         }
         #endregion
@@ -44,9 +48,9 @@ namespace Snake
         #region Buttons
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm(this); 
+            MainForm mainForm = new MainForm(this);
             mainForm.Show();
-            this.Hide();
+            Hide();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -59,7 +63,7 @@ namespace Snake
         {
             SettingsForm settingsForm = new SettingsForm(this);
             settingsForm.Show();
-            this.Hide();
+            Hide();
 
         }
 
@@ -76,7 +80,7 @@ namespace Snake
         private void pnlButtonClose_Click(object sender, EventArgs e)
         {
 
-            this.Hide();
+            Hide();
             Environment.Exit(0);
         }
         #endregion

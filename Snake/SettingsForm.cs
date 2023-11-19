@@ -19,7 +19,6 @@ namespace Snake
         private StartScreen startScreen;
         private MainForm mainForm;
         private SoundPlayer clickSoundPlayer;
-        private CheckBox gameSoundSwitch;
         #endregion
 
         #region Startup
@@ -28,19 +27,15 @@ namespace Snake
             InitializeComponent();
             this.startScreen = startScreen;
             
-
-
             // Set the music switch to the value saved in settings
             musicSwitch.Checked = Settings.Default.IsMusicSwitchOn;
             clickSoundSwitch.Checked = Settings.Default.IsClickSoundSwitchOn;
-            gameSoundSwtich.Checked = Settings.Default.IsGameSoundSwitchOn;
+            gameSoundSwitch.Checked = Settings.Default.IsGameSoundSwitchOn;
 
             // Handle the initial state
             musicSwitch_CheckedChanged(null, null);
             clickSoundSwtich_CheckedChanged(null, null);
-            gameSoundSwtich_CheckedChanged(null, null);
-
-
+            gameSoundSwitch_CheckedChanged(null, null);
         }
         #endregion
 
@@ -48,7 +43,7 @@ namespace Snake
         private void btnPlay_Click(object sender, EventArgs e)
         {
             startScreen.Show();
-            this.Hide();
+            Close();
         }
 
         private void pnlButtonMin_Click(object sender, EventArgs e)
@@ -58,7 +53,7 @@ namespace Snake
 
         private void pnlButtonClose_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
             Environment.Exit(0);
         }
         #endregion
@@ -78,8 +73,11 @@ namespace Snake
             else
             {
                 // If the switch is unchecked (music should stop), stop the background music, and update the state.
-                StartScreen.backgroundMusicPlayer.Stop();
-                StartScreen.isMusicPlaying = false;
+                if (StartScreen.isMusicPlaying)
+                {
+                    StartScreen.backgroundMusicPlayer.Stop();
+                    StartScreen.isMusicPlaying = false;
+                }
             }
 
             // Update the setting when the switch changes
@@ -92,7 +90,7 @@ namespace Snake
             if (clickSoundSwitch.Checked)
             {
                 // If the switch is checked, create the clickSoundPlayer
-                clickSoundPlayer = new SoundPlayer(Properties.Resources.blipSelect);
+                clickSoundPlayer = new SoundPlayer(Resources.blipSelect);
             }
             else
             {
@@ -101,15 +99,12 @@ namespace Snake
             }
 
             // Update the setting when the switch changes
-            Settings.Default.IsMusicSwitchOn = musicSwitch.Checked;
+            Settings.Default.IsClickSoundSwitchOn = clickSoundSwitch.Checked;
             Settings.Default.Save();
         }
 
-        private void gameSoundSwtich_CheckedChanged(object sender, EventArgs e)
+        private void gameSoundSwitch_CheckedChanged(object sender, EventArgs e)
         {
-            // Toggle the game music on or off based on the switch state
-            mainForm.ToggleGameMusic(gameSoundSwitch.Checked);
-
             // Update the setting when the switch changes
             Settings.Default.IsGameSoundSwitchOn = gameSoundSwitch.Checked;
             Settings.Default.Save();

@@ -1,13 +1,13 @@
-﻿    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Data;
-    using System.Drawing;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Windows.Forms;
-    using System.Media;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Media;
 using Snake.Properties;
 
 
@@ -95,7 +95,7 @@ namespace Snake
 
         #endregion
 
-        #region Event Handlers
+        #region Buttons
         private void btnStartGame_Click(object sender, EventArgs e)
         {
             // Stop the background music
@@ -106,6 +106,8 @@ namespace Snake
             {
                 bgGamePlayer.PlayLooping();
             }
+
+            ToggleGameMusic(Settings.Default.IsGameSoundSwitchOn);
 
             // Reset the game state
             snake = new SnakePlayer();
@@ -131,7 +133,7 @@ namespace Snake
 
                 // Redirect to the home page
                 startScreen.Show();
-                this.Hide();
+                Close();
             }
         }
 
