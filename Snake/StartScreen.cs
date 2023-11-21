@@ -2,7 +2,7 @@
 using System;
 using System.Media; // Add this namespace for SoundPlayer
 using System.Windows.Forms;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Snake
 {
@@ -11,6 +11,8 @@ namespace Snake
         #region Variables
         public static SoundPlayer backgroundMusicPlayer;
         public SoundPlayer clickSoundPlayer;
+        private Thread backgroundMusicThread;
+        private Thread clickSoundThread;
 
         public static bool isMusicPlaying = false;
         #endregion
@@ -36,7 +38,7 @@ namespace Snake
                 // Start playing the background music in a loop if Music is on since last open
                 if (Settings.Default.IsMusicSwitchOn)
                 {
-                    backgroundMusicPlayer.PlayLooping();
+                    StartBackgroundMusic(); // Start playing the background music
                     isMusicPlaying = true; // Music is initially playing
                 }
             }
@@ -47,12 +49,14 @@ namespace Snake
             }
 
         }
+
         #endregion
 
         #region Buttons
         private void btnPlay_Click(object sender, EventArgs e)
         {
             MainForm mainForm = new MainForm(this);
+            ButtonClick();
             mainForm.Show();
             Hide();
         }
@@ -60,12 +64,14 @@ namespace Snake
         private void btnExit_Click(object sender, EventArgs e)
         {
             // Exit the program
+            ButtonClick();
             Application.Exit();
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
             SettingsForm settingsForm = new SettingsForm(this);
+            ButtonClick();
             settingsForm.Show();
             Hide();
 
@@ -73,6 +79,7 @@ namespace Snake
 
         private void btnAbout_Click(object sender, EventArgs e)
         {
+            ButtonClick();
             MessageBox.Show("This is Group 8 Snake Game Project");
         }
 
@@ -89,25 +96,49 @@ namespace Snake
         }
         #endregion
 
-        private async void StartScreen_Click(object sender, EventArgs e)
+        public void ButtonClick()
+        {
+            clickSoundThread = new Thread(PlayCLickSound);
+            clickSoundThread.Start();
+        }
+
+        public void StartBackgroundMusic()
+        {
+            backgroundMusicThread = new Thread(PlayBackgroundMusic);
+            backgroundMusicThread.Start();
+        }
+
+        private void PlayCLickSound()
         {
             if (clickSoundPlayer != null)
             {
-                // Play the click sound asynchronously
-                await PlayClickSoundAsync();
+                if (Settings.Default.IsClickSoundSwitchOn)
+                {
+                    // Play the click sound asynchronously
+                    //clickSoundPlayer.Play();
+                }
             }
         }
 
-        private Task PlayClickSoundAsync()
+        private void PlayBackgroundMusic()
         {
-            return Task.Run(() => clickSoundPlayer.Play());
+            if (backgroundMusicPlayer != null)
+            {
+                backgroundMusicPlayer.PlayLooping();
+            }
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             // Stop the background music when the form is closed
-            backgroundMusicPlayer.Stop();
+            StopAudioThreads();
             base.OnFormClosing(e);
+        }
+
+        private void StopAudioThreads()
+        {
+            backgroundMusicThread?.Abort();
+            clickSoundThread?.Abort();
         }
     }
 }

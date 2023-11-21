@@ -56,7 +56,7 @@ namespace Snake
             InitializeComponent();
 
             // Initialize SoundPlayer instances with audio files
-            bgMusicPlayer = new SoundPlayer(Resources.bgForm); // The original background music
+            //bgMusicPlayer = new SoundPlayer(Resources.bgForm); // The original background music
             bgGamePlayer = new SoundPlayer(Resources.bgGame); // New background audio for the game
 
             this.startScreen = startScreen; // Initialize the startScreen variable
@@ -100,13 +100,9 @@ namespace Snake
         {
             // Stop the background music
             bgMusicPlayer.Stop();
+            startScreen.ButtonClick();
 
-            // Start the game background audio if enabled
-            if (IsGameMusicEnabled)
-            {
-                bgGamePlayer.PlayLooping();
-            }
-
+            // Start the game background audio
             ToggleGameMusic(Settings.Default.IsGameSoundSwitchOn);
 
             // Reset the game state
@@ -125,6 +121,7 @@ namespace Snake
         {
             if (startScreen != null)
             {
+                startScreen.ButtonClick();
                 // Stop the game background audio only if the game is started
                 if (isGameStarted)
                 {
@@ -473,11 +470,11 @@ namespace Snake
         }
         #endregion
 
-        public void ToggleGameMusic(bool enable)
+        public async void ToggleGameMusic(bool enable)
         {
             if (enable)
             {
-                bgGamePlayer.PlayLooping();
+                await Task.Run(() => bgGamePlayer.PlayLooping());
                 IsGameMusicEnabled = true;
             }
             else

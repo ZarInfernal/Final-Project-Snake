@@ -17,8 +17,6 @@ namespace Snake
     {
         #region Variables
         private StartScreen startScreen;
-        private MainForm mainForm;
-        private SoundPlayer clickSoundPlayer;
         #endregion
 
         #region Startup
@@ -42,6 +40,7 @@ namespace Snake
         #region Buttons
         private void btnPlay_Click(object sender, EventArgs e)
         {
+            startScreen.ButtonClick();
             startScreen.Show();
             Close();
         }
@@ -61,12 +60,13 @@ namespace Snake
         #region Switch Checks
         private void musicSwitch_CheckedChanged(object sender, EventArgs e)
         {
+            startScreen.ButtonClick();
             if (musicSwitch.Checked)
             {
                 // If the switch is checked (music should play), and the music is not already playing, start it.
                 if (!StartScreen.isMusicPlaying)
                 {
-                    StartScreen.backgroundMusicPlayer.PlayLooping();
+                    startScreen.StartBackgroundMusic();
                     StartScreen.isMusicPlaying = true;
                 }
             }
@@ -87,6 +87,7 @@ namespace Snake
 
         private void clickSoundSwitch_CheckedChanged(object sender, EventArgs e)
         {
+            startScreen.ButtonClick();
             // Update the setting when the switch changes
             Settings.Default.IsClickSoundSwitchOn = clickSoundSwitch.Checked;
             Settings.Default.Save();
@@ -94,6 +95,7 @@ namespace Snake
 
         private void gameSoundSwitch_CheckedChanged(object sender, EventArgs e)
         {
+            startScreen.ButtonClick();
             // Update the setting when the switch changes
             Settings.Default.IsGameSoundSwitchOn = gameSoundSwitch.Checked;
             Settings.Default.Save();
