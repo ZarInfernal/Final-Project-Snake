@@ -11,8 +11,8 @@ namespace Snake
         #region Variables
         public static SoundPlayer backgroundMusicPlayer;
         public SoundPlayer clickSoundPlayer;
-        private Thread backgroundMusicThread;
-        private Thread clickSoundThread;
+        public Thread backgroundMusicThread;
+        public Thread clickSoundThread;
 
         public static bool isMusicPlaying = false;
         #endregion
@@ -110,13 +110,11 @@ namespace Snake
 
         private void PlayCLickSound()
         {
-            if (clickSoundPlayer != null)
-            {
-                if (Settings.Default.IsClickSoundSwitchOn)
-                {
-                    // Play the click sound asynchronously
+            if (clickSoundPlayer != null && Settings.Default.IsClickSoundSwitchOn) 
+            { 
+                    //Play the click sound asynchronously
                     //clickSoundPlayer.Play();
-                }
+                
             }
         }
 
@@ -135,7 +133,7 @@ namespace Snake
             base.OnFormClosing(e);
         }
 
-        private void StopAudioThreads()
+        public void StopAudioThreads()
         {
             backgroundMusicThread?.Abort();
             clickSoundThread?.Abort();

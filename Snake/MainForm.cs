@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using Snake.Properties;
+using System.Threading;
 
 
 namespace Snake
@@ -18,7 +19,6 @@ namespace Snake
         #region Variables
         // Game Stuff
         private StartScreen startScreen;
-        private SoundPlayer bgMusicPlayer;
         private SoundPlayer bgGamePlayer;
         
         private bool IsGameMusicEnabled = true;
@@ -99,7 +99,7 @@ namespace Snake
         private void btnStartGame_Click(object sender, EventArgs e)
         {
             // Stop the background music
-            bgMusicPlayer.Stop();
+            startScreen.backgroundMusicThread?.Abort();
             startScreen.ButtonClick();
 
             // Start the game background audio
@@ -129,6 +129,7 @@ namespace Snake
                 }
 
                 // Redirect to the home page
+                startScreen.StartBackgroundMusic();
                 startScreen.Show();
                 Close();
             }
