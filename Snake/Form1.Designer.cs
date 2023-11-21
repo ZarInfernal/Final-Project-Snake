@@ -243,7 +243,7 @@
             this.clickSoundSwitch.SolidStyle = true;
             this.clickSoundSwitch.TabIndex = 25;
             this.clickSoundSwitch.UseVisualStyleBackColor = true;
-            this.clickSoundSwitch.CheckedChanged += new System.EventHandler(this.clickSoundSwtich_CheckedChanged);
+            this.clickSoundSwitch.CheckedChanged += new System.EventHandler(this.clickSoundSwitch_CheckedChanged);
             // 
             // musicSwitch
             // 

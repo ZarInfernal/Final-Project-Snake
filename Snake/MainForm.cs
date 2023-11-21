@@ -23,7 +23,7 @@ namespace Snake
         
         private bool IsGameMusicEnabled = true;
         private bool isGameStarted = false;
-
+        private bool delay = false;
 
 
         // Player
@@ -56,8 +56,8 @@ namespace Snake
             InitializeComponent();
 
             // Initialize SoundPlayer instances with audio files
-            bgMusicPlayer = new SoundPlayer(Properties.Resources.bgForm); // The original background music
-            bgGamePlayer = new SoundPlayer(Properties.Resources.bgGame); // New background audio for the game
+            bgMusicPlayer = new SoundPlayer(Resources.bgForm); // The original background music
+            bgGamePlayer = new SoundPlayer(Resources.bgGame); // New background audio for the game
 
             this.startScreen = startScreen; // Initialize the startScreen variable
 
@@ -65,7 +65,7 @@ namespace Snake
             snake.Body[0].X = 999;
 
             directionTimer.Start();
-            directionTimer.Interval = 100;// Change/Move Later
+            directionTimer.Interval = 100; // Change/Move Later
             food = new Food();
             lblScore.Text = "SCORE: 0";
             lblPlayerHighScore.Text = "PLAYER HIGH SCORE: 0";
@@ -151,8 +151,17 @@ namespace Snake
         #endregion
 
         #region Key Presses
+        private void MainForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            delay = false;
+        }
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
+            if(delay == true)
+                return;
+
+            delay = true;
+
             switch (e.KeyCode)
             {
                 case Keys.Up: // Change Direction Up
@@ -180,6 +189,9 @@ namespace Snake
                     break;
                 case Keys.R: // Restart the game
                     RestartGame();
+                    break;
+                case Keys.Add: // Debug for growing Snake
+                    snake.Grow();
                     break;
             }
         }
@@ -479,5 +491,7 @@ namespace Snake
         {
 
         }
+
+        
     }
 }

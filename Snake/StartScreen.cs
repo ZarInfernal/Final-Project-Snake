@@ -2,6 +2,7 @@
 using System;
 using System.Media; // Add this namespace for SoundPlayer
 using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace Snake
 {
@@ -40,7 +41,10 @@ namespace Snake
                 }
             }
 
-            clickSoundPlayer = new SoundPlayer(Resources.blipSelect);
+            if (clickSoundPlayer == null)
+            {
+                clickSoundPlayer = new SoundPlayer(Resources.blipSelect);
+            }
 
         }
         #endregion
@@ -85,13 +89,18 @@ namespace Snake
         }
         #endregion
 
-        private void StartScreen_Click(object sender, EventArgs e)
+        private async void StartScreen_Click(object sender, EventArgs e)
         {
             if (clickSoundPlayer != null)
             {
-                // Play the click sound when the form is clicked
-                clickSoundPlayer.Play();
+                // Play the click sound asynchronously
+                await PlayClickSoundAsync();
             }
+        }
+
+        private Task PlayClickSoundAsync()
+        {
+            return Task.Run(() => clickSoundPlayer.Play());
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)

@@ -107,7 +107,7 @@
             // 
             this.comboBoxDiff.BackColor = System.Drawing.Color.LavenderBlush;
             this.comboBoxDiff.Location = new System.Drawing.Point(689, 363);
-            this.comboBoxDiff.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxDiff.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxDiff.Name = "comboBoxDiff";
             this.comboBoxDiff.Size = new System.Drawing.Size(115, 21);
             this.comboBoxDiff.TabIndex = 31;
@@ -149,7 +149,7 @@
             this.pnlButtonClose.FlatAppearance.BorderSize = 0;
             this.pnlButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pnlButtonClose.Location = new System.Drawing.Point(831, -1);
-            this.pnlButtonClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlButtonClose.Margin = new System.Windows.Forms.Padding(2);
             this.pnlButtonClose.Name = "pnlButtonClose";
             this.pnlButtonClose.Size = new System.Drawing.Size(26, 24);
             this.pnlButtonClose.TabIndex = 15;
@@ -164,7 +164,7 @@
             this.pnlButtonMin.FlatAppearance.BorderSize = 0;
             this.pnlButtonMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pnlButtonMin.Location = new System.Drawing.Point(805, -1);
-            this.pnlButtonMin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlButtonMin.Margin = new System.Windows.Forms.Padding(2);
             this.pnlButtonMin.Name = "pnlButtonMin";
             this.pnlButtonMin.Size = new System.Drawing.Size(26, 24);
             this.pnlButtonMin.TabIndex = 14;
@@ -176,7 +176,7 @@
             this.backBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.backBtn.Image = global::Snake.Properties.Resources.Sprite_0002;
             this.backBtn.Location = new System.Drawing.Point(20, 47);
-            this.backBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.backBtn.Margin = new System.Windows.Forms.Padding(2);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(44, 43);
             this.backBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -189,7 +189,7 @@
             this.heart3.BackColor = System.Drawing.Color.Transparent;
             this.heart3.Image = global::Snake.Properties.Resources.heart;
             this.heart3.Location = new System.Drawing.Point(521, 107);
-            this.heart3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.heart3.Margin = new System.Windows.Forms.Padding(2);
             this.heart3.Name = "heart3";
             this.heart3.Size = new System.Drawing.Size(39, 38);
             this.heart3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -201,7 +201,7 @@
             this.heart2.BackColor = System.Drawing.Color.Transparent;
             this.heart2.Image = global::Snake.Properties.Resources.heart;
             this.heart2.Location = new System.Drawing.Point(479, 107);
-            this.heart2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.heart2.Margin = new System.Windows.Forms.Padding(2);
             this.heart2.Name = "heart2";
             this.heart2.Size = new System.Drawing.Size(39, 38);
             this.heart2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -225,7 +225,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Teal;
             this.pictureBox1.Location = new System.Drawing.Point(11, 146);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(560, 540);
             this.pictureBox1.TabIndex = 15;
@@ -263,11 +263,12 @@
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Text = "Snake Game";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.backBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart2)).EndInit();

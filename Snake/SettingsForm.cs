@@ -34,7 +34,7 @@ namespace Snake
 
             // Handle the initial state
             musicSwitch_CheckedChanged(null, null);
-            clickSoundSwtich_CheckedChanged(null, null);
+            clickSoundSwitch_CheckedChanged(null, null);
             gameSoundSwitch_CheckedChanged(null, null);
         }
         #endregion
@@ -85,19 +85,8 @@ namespace Snake
             Settings.Default.Save();
         }
 
-        private void clickSoundSwtich_CheckedChanged(object sender, EventArgs e)
+        private void clickSoundSwitch_CheckedChanged(object sender, EventArgs e)
         {
-            if (clickSoundSwitch.Checked)
-            {
-                // If the switch is checked, create the clickSoundPlayer
-                clickSoundPlayer = new SoundPlayer(Resources.blipSelect);
-            }
-            else
-            {
-                // If the switch is unchecked, set clickSoundPlayer to null
-                clickSoundPlayer = null;
-            }
-
             // Update the setting when the switch changes
             Settings.Default.IsClickSoundSwitchOn = clickSoundSwitch.Checked;
             Settings.Default.Save();
