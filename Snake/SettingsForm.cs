@@ -17,13 +17,16 @@ namespace Snake
     {
         #region Variables
         private StartScreen startScreen;
+        
         #endregion
 
         #region Startup
         public SettingsForm(StartScreen startScreen)
         {
             InitializeComponent();
+          
             this.startScreen = startScreen;
+
             
             // Set the music switch to the value saved in settings
             musicSwitch.Checked = Settings.Default.IsMusicSwitchOn;
@@ -101,6 +104,13 @@ namespace Snake
             Settings.Default.Save();
         }
         #endregion
+
+        private void SettingsForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+     
     }
 }
 

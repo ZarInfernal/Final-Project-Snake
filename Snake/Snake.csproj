@@ -54,6 +54,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Food.cs" />
+    <Compile Include="Obstacle.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -179,6 +180,7 @@
   <ItemGroup>
     <Content Include="Resources\bgForm.wav" />
     <Content Include="Resources\blipSelect.wav" />
+    <None Include="Resources\cratebg-fotor-bg-remover-20231126171945.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
