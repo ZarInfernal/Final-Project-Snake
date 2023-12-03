@@ -509,9 +509,9 @@ namespace Snake
                 }
             }
 
-            if (directionTimer.Interval == 175 && DateTime.Now - speedPowerupCollectedTime > TimeSpan.FromSeconds(5))
+            if (directionTimer.Interval == 175 && DateTime.Now - speedPowerupCollectedTime > TimeSpan.FromSeconds(6))
             {
-                // If 10 seconds have passed, restore the snake's speed to the default value (20)
+                // If 6 seconds have passed, restore the snake's speed to the default value (20)
                 directionTimer.Interval = 100;
                 isPowerupActive = false;
                 //snake.speed = 20;
