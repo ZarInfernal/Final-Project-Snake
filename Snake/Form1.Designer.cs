@@ -41,10 +41,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnPlay = new System.Windows.Forms.Button();
-            this.gameSoundSwitch = new Snake.Custom_Controlers.ToggleButtons();
-            this.clickSoundSwitch = new Snake.Custom_Controlers.ToggleButtons();
-            this.musicSwitch = new Snake.Custom_Controlers.ToggleButtons();
-            this.toggleButtons1 = new Snake.Custom_Controlers.ToggleButtons();
+            //this.gameSoundSwitch = new Snake.Custom_Controlers.ToggleButtons();
+            //this.clickSoundSwitch = new Snake.Custom_Controlers.ToggleButtons();
+            //this.musicSwitch = new Snake.Custom_Controlers.ToggleButtons();
+            //this.toggleButtons1 = new Snake.Custom_Controlers.ToggleButtons();
             this.pnlButtonMin = new System.Windows.Forms.Button();
             this.pnlButtonClose = new System.Windows.Forms.Button();
             this.customTitleBarControl1 = new CustomTitleBarControl();

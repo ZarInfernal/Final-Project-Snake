@@ -175,4 +175,121 @@
   <data name="bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bg.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="health_powerup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\health_powerup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="speed_powerup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\speed_powerup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>&lt;DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml"&gt;</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>&lt;Nodes&gt;</value>
+  </data>
+  <data name="String10" xml:space="preserve">
+    <value>&lt;Category Id="CodeSchema_Property" Label="Property" BasedOn="CodeSchema_Member" Icon="CodeSchema_Property" /&gt;</value>
+  </data>
+  <data name="String11" xml:space="preserve">
+    <value>&lt;Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" IsContainment="True" /&gt;</value>
+  </data>
+  <data name="String12" xml:space="preserve">
+    <value>&lt;/Categories&gt;</value>
+  </data>
+  <data name="String13" xml:space="preserve">
+    <value>&lt;Properties&gt;</value>
+  </data>
+  <data name="String14" xml:space="preserve">
+    <value>&lt;Property Id="CodeSchemaProperty_IsPublic" Label="Is Public" Description="Flag to indicate the scope is Public" DataType="System.Boolean" /&gt;</value>
+  </data>
+  <data name="String15" xml:space="preserve">
+    <value>&lt;Property Id="CodeSchemaProperty_IsStatic" Label="Is Static" Description="Flag to indicate the member is a static member" DataType="System.Boolean" /&gt;</value>
+  </data>
+  <data name="String16" xml:space="preserve">
+    <value>&lt;Property Id="CommonLabel" DataType="System.String" /&gt;</value>
+  </data>
+  <data name="String17" xml:space="preserve">
+    <value>&lt;Property Id="Icon" Label="Icon" DataType="System.String" /&gt;</value>
+  </data>
+  <data name="String18" xml:space="preserve">
+    <value>&lt;Property Id="IsContainment" DataType="System.Boolean" /&gt;</value>
+  </data>
+  <data name="String19" xml:space="preserve">
+    <value>&lt;Property Id="IsDragSource" Label="IsDragSource" Description="IsDragSource" DataType="System.Boolean" /&gt;</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>&lt;Node Id="(@1 Namespace=Snake.Properties Type=Resources Member=speed_powerup)" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsStatic="True" CommonLabel="speed_powerup" Icon="Microsoft.VisualStudio.Property.Public" IsDragSource="True" Label="speed_powerup : Bitmap" SourceLocation="(Assembly=&amp;quot;file://mac/Home/Documents/School/Semester 3/SODV2101 - Rapid Application Development/Final Project/Final-Project-Snake/Snake/Properties/Resources.Designer.cs&amp;quot; StartLineNumber=239 StartCharacterOffset=44 EndLineNumber=239 EndCharacterOffset=57)" /&gt;</value>
+  </data>
+  <data name="String20" xml:space="preserve">
+    <value>&lt;Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" /&gt;</value>
+  </data>
+  <data name="String21" xml:space="preserve">
+    <value>&lt;Property Id="SourceLocation" Label="Start Line Number" DataType="Microsoft.VisualStudio.GraphModel.CodeSchema.SourceLocation" /&gt;</value>
+  </data>
+  <data name="String22" xml:space="preserve">
+    <value>&lt;Property Id="Visibility" Label="Visibility" Description="Defines whether a node in the graph is visible or not" DataType="System.Windows.Visibility" /&gt;</value>
+  </data>
+  <data name="String23" xml:space="preserve">
+    <value>&lt;/Properties&gt;</value>
+  </data>
+  <data name="String24" xml:space="preserve">
+    <value>&lt;QualifiedNames&gt;</value>
+  </data>
+  <data name="String25" xml:space="preserve">
+    <value>&lt;Name Id="Assembly" Label="Assembly" ValueType="Uri" /&gt;</value>
+  </data>
+  <data name="String26" xml:space="preserve">
+    <value>&lt;Name Id="Member" Label="Member" ValueType="System.Object" /&gt;</value>
+  </data>
+  <data name="String27" xml:space="preserve">
+    <value>&lt;Name Id="Namespace" Label="Namespace" ValueType="System.String" /&gt;</value>
+  </data>
+  <data name="String28" xml:space="preserve">
+    <value>&lt;Name Id="Type" Label="Type" ValueType="System.Object" /&gt;</value>
+  </data>
+  <data name="String29" xml:space="preserve">
+    <value>&lt;/QualifiedNames&gt;</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value>&lt;Node Id="(@1 Namespace=Snake.Properties Type=Resources)" Visibility="Hidden" /&gt;</value>
+  </data>
+  <data name="String30" xml:space="preserve">
+    <value>&lt;IdentifierAliases&gt;</value>
+  </data>
+  <data name="String31" xml:space="preserve">
+    <value>&lt;Alias n="1" Uri="Assembly=$(666b9f11-beae-4065-a911-67488d8f9066.OutputPathUri)" /&gt;</value>
+  </data>
+  <data name="String32" xml:space="preserve">
+    <value>&lt;/IdentifierAliases&gt;</value>
+  </data>
+  <data name="String33" xml:space="preserve">
+    <value>&lt;Paths&gt;</value>
+  </data>
+  <data name="String34" xml:space="preserve">
+    <value>&lt;Path Id="666b9f11-beae-4065-a911-67488d8f9066.OutputPathUri" Value="file://mac/Home/Documents/School/Semester 3/SODV2101 - Rapid Application Development/Final Project/Final-Project-Snake/Snake/bin/Debug/Snake.exe" /&gt;</value>
+  </data>
+  <data name="String35" xml:space="preserve">
+    <value>&lt;/Paths&gt;</value>
+  </data>
+  <data name="String36" xml:space="preserve">
+    <value>&lt;/DirectedGraph&gt;</value>
+  </data>
+  <data name="String4" xml:space="preserve">
+    <value>&lt;/Nodes&gt;</value>
+  </data>
+  <data name="String5" xml:space="preserve">
+    <value>&lt;Links&gt;</value>
+  </data>
+  <data name="String6" xml:space="preserve">
+    <value>&lt;Link Source="(@1 Namespace=Snake.Properties Type=Resources)" Target="(@1 Namespace=Snake.Properties Type=Resources Member=speed_powerup)" Category="Contains" /&gt;</value>
+  </data>
+  <data name="String7" xml:space="preserve">
+    <value>&lt;/Links&gt;</value>
+  </data>
+  <data name="String8" xml:space="preserve">
+    <value>&lt;Categories&gt;</value>
+  </data>
+  <data name="String9" xml:space="preserve">
+    <value>&lt;Category Id="CodeSchema_Member" Label="Member" Icon="CodeSchema_Field" /&gt;</value>
+  </data>
 </root>

@@ -37,3 +37,16 @@ C:\Users\leo88\OneDrive\Documentos\GitHub\Final-Project-Snake\Snake\obj\Debug\Sn
 C:\Users\leo88\OneDrive\Documentos\GitHub\Final-Project-Snake\Snake\obj\Debug\Snake.csproj.CoreCompileInputs.cache
 C:\Users\leo88\OneDrive\Documentos\GitHub\Final-Project-Snake\Snake\obj\Debug\Snake.exe
 C:\Users\leo88\OneDrive\Documentos\GitHub\Final-Project-Snake\Snake\obj\Debug\Snake.pdb
+\\Mac\Home\Documents\School\Semester 3\SODV2101 - Rapid Application Development\Final Project\Final-Project-Snake\Snake\obj\Debug\Snake.csproj.AssemblyReference.cache
+\\Mac\Home\Documents\School\Semester 3\SODV2101 - Rapid Application Development\Final Project\Final-Project-Snake\Snake\obj\Debug\CustomTitleBarControl.resources
+\\Mac\Home\Documents\School\Semester 3\SODV2101 - Rapid Application Development\Final Project\Final-Project-Snake\Snake\obj\Debug\Snake.MainForm.resources
+\\Mac\Home\Documents\School\Semester 3\SODV2101 - Rapid Application Development\Final Project\Final-Project-Snake\Snake\obj\Debug\Snake.Properties.Resources.resources
+\\Mac\Home\Documents\School\Semester 3\SODV2101 - Rapid Application Development\Final Project\Final-Project-Snake\Snake\obj\Debug\Snake.SettingsForm.resources
+\\Mac\Home\Documents\School\Semester 3\SODV2101 - Rapid Application Development\Final Project\Final-Project-Snake\Snake\obj\Debug\Snake.StartScreen.resources
+\\Mac\Home\Documents\School\Semester 3\SODV2101 - Rapid Application Development\Final Project\Final-Project-Snake\Snake\obj\Debug\Snake.csproj.GenerateResource.cache
+\\Mac\Home\Documents\School\Semester 3\SODV2101 - Rapid Application Development\Final Project\Final-Project-Snake\Snake\obj\Debug\Snake.csproj.CoreCompileInputs.cache
+\\Mac\Home\Documents\School\Semester 3\SODV2101 - Rapid Application Development\Final Project\Final-Project-Snake\Snake\obj\Debug\Snake.exe
+\\Mac\Home\Documents\School\Semester 3\SODV2101 - Rapid Application Development\Final Project\Final-Project-Snake\Snake\obj\Debug\Snake.pdb
+\\Mac\Home\Documents\School\Semester 3\SODV2101 - Rapid Application Development\Final Project\Final-Project-Snake\Snake\bin\Debug\Snake.exe.config
+\\Mac\Home\Documents\School\Semester 3\SODV2101 - Rapid Application Development\Final Project\Final-Project-Snake\Snake\bin\Debug\Snake.exe
+\\Mac\Home\Documents\School\Semester 3\SODV2101 - Rapid Application Development\Final Project\Final-Project-Snake\Snake\bin\Debug\Snake.pdb
