@@ -10,7 +10,9 @@ using System.Windows.Forms;
 using System.Media;
 using Snake.Properties;
 using System.Threading;
-
+using System.Reflection;
+//using Snake.Snake;
+using System.Drawing.Imaging;
 
 namespace Snake
 {
@@ -20,7 +22,7 @@ namespace Snake
         // Game Stuff
         private StartScreen startScreen;
         private SoundPlayer bgGamePlayer;
-        
+
         private bool IsGameMusicEnabled = true;
         private bool isGameStarted = false;
         private bool delay = false;
@@ -32,6 +34,12 @@ namespace Snake
         //Food
         private Food food;
 
+        //Powerup
+        private List<Powerups> activePowerups = new List<Powerups>();
+        private Random random = new Random();
+        public DateTime speedPowerupCollectedTime;
+        private bool isPowerupActive = false;
+
         //Score
         private int score = 0;
         private int allTimeHighScore = 0;
@@ -41,13 +49,15 @@ namespace Snake
         private int snakeHealth = 3;
 
 
-        //Levels
-        private int currentLevel = 1;
-        private int[] levelThresholds = { 20, 30, 50 };
-        private Color[] levelColors = { Color.LightBlue, Color.LightGreen, Color.LightPink };
+
 
         //Difficulty
         private int difficultyLevel;
+
+        //Obstacles
+        private List<Obstacle> obstacles = new List<Obstacle>();
+        private System.Windows.Forms.Timer obstacleTimerForm;
+
         #endregion
 
         #region StartUp
@@ -67,13 +77,34 @@ namespace Snake
             directionTimer.Start();
             directionTimer.Interval = 100; // Change/Move Later
             food = new Food();
+
+            random = new Random();
+            //healthPowerup = new HealthPowerup();
+            //speedPowerup = new SpeedPowerup();
+
+            //powerupTimer.Interval = 6000;
+            //powerupTimer.Tick += powerupTimer_Tick;
+            //powerupTimer.Start();
+
+            //powerupDuration.Interval = 5000;
+            //powerupDuration.Tick += powerupDuration_Tick;
+
+            //reduceSpeed.Interval = 8000;
+            //reduceSpeed.Tick += reduceSpeed_Tick;
+
+            //powerup = new Powerup();
             lblScore.Text = "SCORE: 0";
             lblPlayerHighScore.Text = "PLAYER HIGH SCORE: 0";
             lblHighScore.Text = "HIGH SCORE: 0";
-           //To Update All Time High Score
+            //To Update All Time High Score
             LoadAllTimeHighScore();
 
-          
+            //Obstacle Timer
+            obstacleTimer = new System.Windows.Forms.Timer();
+            obstacleTimer.Interval = 5000;
+            obstacleTimer.Tick += obstacleTimer_Tick;
+
+
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -108,6 +139,7 @@ namespace Snake
             // Reset the game state
             snake = new SnakePlayer();
             directionTimer.Start();
+            obstacleTimer.Start();
             GenerateFood(); // Generate initial food position
             score = 0; // Reset the score
             UpdateScoreLabel(); // Update the score label
@@ -116,6 +148,7 @@ namespace Snake
 
             isGameStarted = true;
         }
+
 
         private void backBtn_Click(object sender, EventArgs e)
         {
@@ -155,7 +188,7 @@ namespace Snake
         }
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if(delay == true)
+            if (delay == true)
                 return;
 
             delay = true;
@@ -202,13 +235,27 @@ namespace Snake
         #endregion
 
         #region Timer Events
+
         private void directionTimer_Tick(object sender, EventArgs e)
         {
-            snake.Move(); // Set the direction of the snake
-            CheckCollisions();
-            pictureBox1.Invalidate();
+            //Console.WriteLine("Direction Timer Tick");
 
+            snake.Move();
+            CheckCollisions();
+
+            // Check for generating new powerups at random intervals
+            if (!isPowerupActive && activePowerups.Count == 0 && random.Next(100) < 2) // Adjust the probability as needed
+            {
+                if (score >= 3)
+                {
+                    GenerateRandomPowerup();
+                    isPowerupActive = true;
+                }
+            }
+
+            pictureBox1.Invalidate();
         }
+
         #endregion
 
         #region Game Events
@@ -227,16 +274,17 @@ namespace Snake
             heart3.Visible = true;
 
             score = 0;
-            currentLevel = 1;
-            UpdateScoreLabel();
 
-            // Reset background color to the first level color
-            pictureBox1.BackColor = levelColors[0];
+
+
+
 
             // Restart the game
             directionTimer.Start();
+            obstacleTimer.Start();
             snake = new SnakePlayer();
             GenerateFood(); // Generate initial food position
+            //GeneratePowerup(); // Generate initial powerup position
             pictureBox1.Invalidate();
         }
 
@@ -250,6 +298,9 @@ namespace Snake
             directionTimer.Stop(); // Stop the timer
             bgGamePlayer.Stop();   // Stop the game background audio
 
+            // Stop the obstacleTimer
+            obstacleTimer.Stop();
+
             // Show a confirmation message box
             DialogResult result = MessageBox.Show("Are you sure you want to restart the game?", "Restart Game", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -260,6 +311,9 @@ namespace Snake
                 snake = new SnakePlayer();
                 GenerateFood(); // Generate initial food position
                 pictureBox1.Invalidate();
+
+                // Start the obstacleTimer
+                obstacleTimer.Start();
             }
             else
             {
@@ -268,10 +322,50 @@ namespace Snake
             }
         }
 
+
+        private void GenerateObstacle()
+        {
+            Random random = new Random();
+
+            int x, y;
+            int obstacleSize = 30;
+
+            do
+            {
+                x = random.Next(0, pictureBox1.Width - obstacleSize);
+                y = random.Next(0, pictureBox1.Height - obstacleSize);
+            } while (snake.Body.Any(bodyPart => bodyPart.IntersectsWith(new Rectangle(x, y, obstacleSize, obstacleSize))) ||
+                     obstacles.Any(obstacle => obstacle.Position.IntersectsWith(new Rectangle(x, y, obstacleSize, obstacleSize))) ||
+                     food.Position.IntersectsWith(new Rectangle(x, y, obstacleSize, obstacleSize)));
+
+            obstacles.Add(new Obstacle(new Point(x, y)));
+        }
+
+
+
+        private void obstacleTimer_Tick(object sender, EventArgs e)
+        {
+            GenerateObstacle();
+        }
+
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             snake.Draw(e.Graphics);
             food.Draw(e.Graphics);
+
+            foreach (var obstacle in obstacles)
+            {
+                obstacle.Draw(e.Graphics);
+            }
+
+
+
+            foreach (Powerups powerup in activePowerups)
+            {
+                powerup.Draw(e.Graphics);
+            }
+            //if(powerup != null)
+            //    powerup.Draw(e.Graphics);
         }
         #endregion
 
@@ -300,20 +394,8 @@ namespace Snake
             SetDifficultyLevel();
         }
 
-        private void CheckLevelChange()
-        {
-            // Check if the player reached the next level
-            if (score == levelThresholds[currentLevel - 1])
-            {
-                currentLevel++;
 
-                // Change the background color based on the level
-                if (currentLevel <= levelColors.Length)
-                {
-                    pictureBox1.BackColor = levelColors[currentLevel - 1];
-                }
-            }
-        }
+
         #endregion
 
         #region Score
@@ -415,9 +497,66 @@ namespace Snake
                     UpdateAllTimeHighScoreLabel();  // Call this method to update the label
                 }
 
-                // Check for level change
-                CheckLevelChange();
             }
+            foreach (var obstacle in obstacles.ToList())
+            {
+                if (snake.Body[0].IntersectsWith(obstacle.Position))
+                {
+                    // Snake hit an obstacle, handle hit
+                    obstacles.Remove(obstacle);
+                    HandleHit();
+                    return;
+                }
+
+                if (obstacle.ShouldDisappear())
+                {
+                    obstacles.Remove(obstacle);
+                }
+            }
+
+
+
+            foreach (Powerups powerup in activePowerups.ToList())
+            {
+                if (snake.Body[0].IntersectsWith(powerup.Position))
+                {
+                    // Handle powerup collection based on its type
+                    switch (powerup.Type)
+                    {
+                        case Powerups.PowerupType.Health:
+                            snakeHealth = 3; // Increase health
+                            heart1.Visible = true;
+                            heart2.Visible = true;
+                            heart3.Visible = true;
+
+                            //activePowerups.Remove(powerup);
+                            isPowerupActive = false;
+
+                            break;
+                        case Powerups.PowerupType.Speed:
+                            directionTimer.Interval = 175;
+                            //snake.speed = 19; // Reduce speed
+                            speedPowerupCollectedTime = DateTime.Now; // Record the time when the speed powerup was collected
+                            break;
+                    }
+
+                    activePowerups.Remove(powerup);
+
+
+                    // Remove the collected powerup from the list
+                }
+            }
+
+            if (directionTimer.Interval == 175 && DateTime.Now - speedPowerupCollectedTime > TimeSpan.FromSeconds(8))
+            {
+                // If 6 seconds have passed, restore the snake's speed to the default value (20)
+                directionTimer.Interval = 100;
+                isPowerupActive = false;
+                //snake.speed = 20;
+                Task.Delay(random.Next(5000, 10000)).ContinueWith(_ => GenerateRandomPowerup());
+            }
+
+
 
             // Check for collisions with bounds
             if (snake.Body[0].X < 0 || snake.Body[0].X >= pictureBox1.Width ||
@@ -430,6 +569,7 @@ namespace Snake
 
         private void HandleHit()
         {
+            Console.WriteLine("Collission Occurred");
             snakeHealth--; // Decrease health
 
             // Update hearts visibility based on remaining health
@@ -469,6 +609,68 @@ namespace Snake
 
             food.Position.Location = new Point(x, y);
         }
+
+        private void GenerateRandomPowerup()
+        {
+            Random random = new Random();
+            Powerups newPowerup;
+
+            // Maximum number of attempts to generate a powerup without overlapping with snake, food, or obstacles
+            int maxAttempts = 50;
+
+            for (int attempt = 0; attempt < maxAttempts; attempt++)
+            {
+                // Generate a random position for the powerup
+                int x = random.Next(0, pictureBox1.Width - 20);
+                int y = random.Next(0, pictureBox1.Height - 20);
+
+                Rectangle powerupRectangle = new Rectangle(x, y, 20, 20);
+
+                // Check if the powerup overlaps with the snake or its body
+                if (snake.Body.Any(bodyPart => bodyPart.IntersectsWith(powerupRectangle)))
+                    continue;
+
+                // Check if the powerup overlaps with existing food pieces
+                if (food.Position.IntersectsWith(powerupRectangle))
+                    continue;
+
+                // Check if the powerup overlaps with obstacles (to be implemented)
+                foreach (Obstacle obstacle in obstacles)
+                {
+                    if (obstacle.Position.IntersectsWith(powerupRectangle))
+                        continue;
+                }
+
+                // If none of the checks failed, create the powerup and add it to the list
+
+                if (snakeHealth == 3)
+                {
+                    Powerups.PowerupType type = Powerups.PowerupType.Speed;
+                    newPowerup = new Powerups(type, new Point(x, y));
+                }
+                else
+                {
+                    Powerups.PowerupType randomType = (Powerups.PowerupType)random.Next(Enum.GetNames(typeof(Powerups.PowerupType)).Length);
+                    newPowerup = new Powerups(randomType, new Point(x, y));
+                }
+
+                newPowerup.OnPowerupExpired += HandlePowerupExpired;
+
+                activePowerups.Add(newPowerup);
+
+                // Exit the loop since a valid powerup has been generated
+                break;
+            }
+        }
+
+
+        private void HandlePowerupExpired(Powerups expiredPowerup)
+        {
+            activePowerups.Remove(expiredPowerup);
+            isPowerupActive = false;
+        }
+
+
         #endregion
 
         public async void ToggleGameMusic(bool enable)
@@ -490,6 +692,6 @@ namespace Snake
 
         }
 
-        
+
     }
 }

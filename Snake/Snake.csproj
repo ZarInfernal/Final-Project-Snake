@@ -54,6 +54,8 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Food.cs" />
+    <Compile Include="Obstacle.cs" />
+    <Compile Include="Powerups.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -179,6 +181,9 @@
   <ItemGroup>
     <Content Include="Resources\bgForm.wav" />
     <Content Include="Resources\blipSelect.wav" />
+    <None Include="Resources\crate.png" />
+    <None Include="Resources\speed_powerup.png" />
+    <None Include="Resources\health_powerup.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -149,6 +149,16 @@ namespace Snake.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap crate {
+            get {
+                object obj = ResourceManager.GetObject("crate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap delete__1_ {
             get {
                 object obj = ResourceManager.GetObject("delete__1_", resourceCulture);
@@ -162,6 +172,16 @@ namespace Snake.Properties {
         internal static System.IO.UnmanagedMemoryStream fruitPickup {
             get {
                 return ResourceManager.GetStream("fruitPickup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap health_powerup {
+            get {
+                object obj = ResourceManager.GetObject("health_powerup", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -230,6 +250,16 @@ namespace Snake.Properties {
         internal static System.Drawing.Bitmap snakefood {
             get {
                 object obj = ResourceManager.GetObject("snakefood", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap speed_powerup {
+            get {
+                object obj = ResourceManager.GetObject("speed_powerup", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
