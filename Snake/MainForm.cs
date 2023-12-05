@@ -58,15 +58,13 @@ namespace Snake
         private int snakeHealth = 3;
 
 
-     
+        //Levels
+        private int currentLevel = 1;
+        private int[] levelThresholds = { 20, 30, 50 };
+        private Color[] levelColors = { Color.LightBlue, Color.LightGreen, Color.LightPink };
 
         //Difficulty
         private int difficultyLevel;
-
-        //Obstacles
-        private List<Obstacle> obstacles = new List<Obstacle>();
-        private System.Windows.Forms.Timer obstacleTimerForm;
-
         #endregion
 
         #region StartUp
@@ -108,12 +106,7 @@ namespace Snake
            //To Update All Time High Score
             LoadAllTimeHighScore();
 
-            //Obstacle Timer
-            obstacleTimer = new System.Windows.Forms.Timer();
-            obstacleTimer.Interval = 5000;
-            obstacleTimer.Tick += obstacleTimer_Tick;
-            
-
+          
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -148,7 +141,6 @@ namespace Snake
             // Reset the game state
             snake = new SnakePlayer();
             directionTimer.Start();
-            obstacleTimer.Start(); 
             GenerateFood(); // Generate initial food position
             score = 0; // Reset the score
             UpdateScoreLabel(); // Update the score label
@@ -157,7 +149,6 @@ namespace Snake
 
             isGameStarted = true;
         }
- 
 
         private void backBtn_Click(object sender, EventArgs e)
         {
@@ -285,14 +276,14 @@ namespace Snake
             heart3.Visible = true;
 
             score = 0;
-          
-           
+            currentLevel = 1;
+            UpdateScoreLabel();
 
-       
+            // Reset background color to the first level color
+            pictureBox1.BackColor = levelColors[0];
 
             // Restart the game
             directionTimer.Start();
-            obstacleTimer.Start();
             snake = new SnakePlayer();
             GenerateFood(); // Generate initial food position
             //GeneratePowerup(); // Generate initial powerup position
@@ -309,9 +300,6 @@ namespace Snake
             directionTimer.Stop(); // Stop the timer
             bgGamePlayer.Stop();   // Stop the game background audio
 
-            // Stop the obstacleTimer
-            obstacleTimer.Stop();
-
             // Show a confirmation message box
             DialogResult result = MessageBox.Show("Are you sure you want to restart the game?", "Restart Game", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -322,9 +310,6 @@ namespace Snake
                 snake = new SnakePlayer();
                 GenerateFood(); // Generate initial food position
                 pictureBox1.Invalidate();
-
-                // Start the obstacleTimer
-                obstacleTimer.Start();
             }
             else
             {
@@ -333,43 +318,10 @@ namespace Snake
             }
         }
 
-
-        private void GenerateObstacle()
-        {
-            Random random = new Random();
-
-            int x, y;
-            int obstacleSize = 30; 
-
-            do
-            {
-                x = random.Next(0, pictureBox1.Width - obstacleSize);
-                y = random.Next(0, pictureBox1.Height - obstacleSize);
-            } while (snake.Body.Any(bodyPart => bodyPart.IntersectsWith(new Rectangle(x, y, obstacleSize, obstacleSize))) ||
-                     obstacles.Any(obstacle => obstacle.Position.IntersectsWith(new Rectangle(x, y, obstacleSize, obstacleSize))) ||
-                     food.Position.IntersectsWith(new Rectangle(x, y, obstacleSize, obstacleSize)));
-
-            obstacles.Add(new Obstacle(new Point(x, y)));
-        }
-
-
-
-        private void obstacleTimer_Tick(object sender, EventArgs e)
-        {
-            GenerateObstacle();
-        }
-
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             snake.Draw(e.Graphics);
             food.Draw(e.Graphics);
-
-            foreach (var obstacle in obstacles)
-            {
-                obstacle.Draw(e.Graphics);
-            }
-        
-
 
             foreach (Powerups powerup in activePowerups)
             {
@@ -405,8 +357,20 @@ namespace Snake
             SetDifficultyLevel();
         }
 
-    
-    
+        private void CheckLevelChange()
+        {
+            // Check if the player reached the next level
+            if (score == levelThresholds[currentLevel - 1])
+            {
+                currentLevel++;
+
+                // Change the background color based on the level
+                if (currentLevel <= levelColors.Length)
+                {
+                    pictureBox1.BackColor = levelColors[currentLevel - 1];
+                }
+            }
+        }
         #endregion
 
         #region Score
@@ -508,21 +472,8 @@ namespace Snake
                     UpdateAllTimeHighScoreLabel();  // Call this method to update the label
                 }
 
-            }
-            foreach (var obstacle in obstacles.ToList())
-            {
-                if (snake.Body[0].IntersectsWith(obstacle.Position))
-                {
-                    // Snake hit an obstacle, handle hit
-                    obstacles.Remove(obstacle);
-                    HandleHit();
-                    return;
-                }
-
-                if (obstacle.ShouldDisappear())
-                {
-                    obstacles.Remove(obstacle);
-                }
+                // Check for level change
+                CheckLevelChange();
             }
 
 
@@ -699,6 +650,6 @@ namespace Snake
 
         }
 
-     
+        
     }
 }
