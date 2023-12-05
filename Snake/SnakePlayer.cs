@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -10,8 +8,7 @@ namespace Snake
     class SnakePlayer
     {
         public Rectangle[] Body;
-        public int speed = 20;
-
+        int speed = 20;
         public enum Direction { Up, Down, Left, Right, NONE };
         public Direction direction;
         LinearGradientBrush bodyGradient = new LinearGradientBrush(new Point(0, 0), new Point(0, 20), Color.FromArgb(255, 204, 0), // tail color
@@ -23,8 +20,9 @@ namespace Snake
         Pen outlinePen = new Pen(Color.Black, 2);
         private int x = 240;
         private int y = 400;
-        public int width = 20;
-        public int height = 20;
+        private int width = 20;
+        private int height = 20;
+
 
         public SnakePlayer()
         {
@@ -36,9 +34,8 @@ namespace Snake
         {
             for (int i = Body.Length - 1; i > 0; i--)
                 Body[i] = Body[i - 1];
-
+            
         }
-
 
         public void Draw(Graphics g)
         {
@@ -59,14 +56,14 @@ namespace Snake
         public void Grow()
         {
             List<Rectangle> bodyAdd = Body.ToList();
-            bodyAdd.Add(new Rectangle(Body[Body.Length - 1].X, Body[Body.Length - 1].Y, width, height)); // add Rectangle to list
+            bodyAdd.Add(new Rectangle(Body[Body.Length - 1].X, Body[Body.Length-1].Y, width, height)); // add Rectangle to list
             Body = bodyAdd.ToArray();
         }
 
         public void Move()
         {
             UpdateBody();
-            switch (direction)
+            switch(direction)
             {
                 case Direction.Up:
                     Body[0].Y -= speed;
@@ -87,7 +84,8 @@ namespace Snake
                 default:
                     break;
             }
-
         }
+
+
     }
 }

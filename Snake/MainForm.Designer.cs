@@ -44,10 +44,7 @@
             this.heart2 = new System.Windows.Forms.PictureBox();
             this.heart1 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.powerupTimer = new System.Windows.Forms.Timer(this.components);
-            this.powerupDuration = new System.Windows.Forms.Timer(this.components);
             this.customTitleBarControl1 = new CustomTitleBarControl();
-            this.reduceSpeed = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.backBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart2)).BeginInit();
@@ -60,10 +57,10 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI Variable Display", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.lblTitle.Location = new System.Drawing.Point(272, 127);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Location = new System.Drawing.Point(136, 66);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(487, 94);
+            this.lblTitle.Size = new System.Drawing.Size(241, 47);
             this.lblTitle.TabIndex = 16;
             this.lblTitle.Text = "SNAKE GAME";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -73,10 +70,10 @@
             this.lblGroup.AutoSize = true;
             this.lblGroup.Font = new System.Drawing.Font("Segoe UI Variable Display", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.lblGroup.Location = new System.Drawing.Point(1346, 127);
-            this.lblGroup.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGroup.Location = new System.Drawing.Point(673, 66);
+            this.lblGroup.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGroup.Name = "lblGroup";
-            this.lblGroup.Size = new System.Drawing.Size(350, 94);
+            this.lblGroup.Size = new System.Drawing.Size(176, 47);
             this.lblGroup.TabIndex = 17;
             this.lblGroup.Text = "Group 8   ";
             this.lblGroup.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -86,10 +83,9 @@
             this.btnStartGame.BackColor = System.Drawing.Color.Teal;
             this.btnStartGame.Font = new System.Drawing.Font("Segoe UI Variable Display", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartGame.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnStartGame.Location = new System.Drawing.Point(1318, 496);
-            this.btnStartGame.Margin = new System.Windows.Forms.Padding(6);
+            this.btnStartGame.Location = new System.Drawing.Point(659, 258);
             this.btnStartGame.Name = "btnStartGame";
-            this.btnStartGame.Size = new System.Drawing.Size(330, 92);
+            this.btnStartGame.Size = new System.Drawing.Size(165, 48);
             this.btnStartGame.TabIndex = 18;
             this.btnStartGame.Text = "START";
             this.btnStartGame.UseVisualStyleBackColor = false;
@@ -100,20 +96,20 @@
             this.lblHighScore.AutoSize = true;
             this.lblHighScore.Font = new System.Drawing.Font("Segoe UI Variable Display", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHighScore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.lblHighScore.Location = new System.Drawing.Point(1336, 615);
-            this.lblHighScore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHighScore.Location = new System.Drawing.Point(668, 320);
+            this.lblHighScore.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHighScore.Name = "lblHighScore";
-            this.lblHighScore.Size = new System.Drawing.Size(0, 57);
+            this.lblHighScore.Size = new System.Drawing.Size(0, 30);
             this.lblHighScore.TabIndex = 30;
             this.lblHighScore.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // comboBoxDiff
             // 
             this.comboBoxDiff.BackColor = System.Drawing.Color.LavenderBlush;
-            this.comboBoxDiff.Location = new System.Drawing.Point(1378, 698);
-            this.comboBoxDiff.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBoxDiff.Location = new System.Drawing.Point(689, 363);
+            this.comboBoxDiff.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxDiff.Name = "comboBoxDiff";
-            this.comboBoxDiff.Size = new System.Drawing.Size(226, 33);
+            this.comboBoxDiff.Size = new System.Drawing.Size(115, 21);
             this.comboBoxDiff.TabIndex = 31;
             this.comboBoxDiff.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox1_KeyDown);
             // 
@@ -122,10 +118,10 @@
             this.lblScore.AutoSize = true;
             this.lblScore.Font = new System.Drawing.Font("Segoe UI Variable Display", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.lblScore.Location = new System.Drawing.Point(1378, 777);
-            this.lblScore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblScore.Location = new System.Drawing.Point(689, 404);
+            this.lblScore.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(0, 57);
+            this.lblScore.Size = new System.Drawing.Size(0, 30);
             this.lblScore.TabIndex = 32;
             this.lblScore.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -134,10 +130,10 @@
             this.lblPlayerHighScore.AutoSize = true;
             this.lblPlayerHighScore.Font = new System.Drawing.Font("Segoe UI Variable Display", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlayerHighScore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.lblPlayerHighScore.Location = new System.Drawing.Point(1240, 854);
-            this.lblPlayerHighScore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPlayerHighScore.Location = new System.Drawing.Point(620, 444);
+            this.lblPlayerHighScore.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlayerHighScore.Name = "lblPlayerHighScore";
-            this.lblPlayerHighScore.Size = new System.Drawing.Size(0, 57);
+            this.lblPlayerHighScore.Size = new System.Drawing.Size(0, 30);
             this.lblPlayerHighScore.TabIndex = 33;
             this.lblPlayerHighScore.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -152,10 +148,10 @@
             this.pnlButtonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pnlButtonClose.FlatAppearance.BorderSize = 0;
             this.pnlButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.pnlButtonClose.Location = new System.Drawing.Point(1662, -2);
-            this.pnlButtonClose.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlButtonClose.Location = new System.Drawing.Point(831, -1);
+            this.pnlButtonClose.Margin = new System.Windows.Forms.Padding(2);
             this.pnlButtonClose.Name = "pnlButtonClose";
-            this.pnlButtonClose.Size = new System.Drawing.Size(52, 46);
+            this.pnlButtonClose.Size = new System.Drawing.Size(26, 24);
             this.pnlButtonClose.TabIndex = 15;
             this.pnlButtonClose.UseVisualStyleBackColor = false;
             this.pnlButtonClose.Click += new System.EventHandler(this.pnlButtonClose_Click);
@@ -167,10 +163,10 @@
             this.pnlButtonMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pnlButtonMin.FlatAppearance.BorderSize = 0;
             this.pnlButtonMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.pnlButtonMin.Location = new System.Drawing.Point(1610, -2);
-            this.pnlButtonMin.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlButtonMin.Location = new System.Drawing.Point(805, -1);
+            this.pnlButtonMin.Margin = new System.Windows.Forms.Padding(2);
             this.pnlButtonMin.Name = "pnlButtonMin";
-            this.pnlButtonMin.Size = new System.Drawing.Size(52, 46);
+            this.pnlButtonMin.Size = new System.Drawing.Size(26, 24);
             this.pnlButtonMin.TabIndex = 14;
             this.pnlButtonMin.UseVisualStyleBackColor = false;
             this.pnlButtonMin.Click += new System.EventHandler(this.pnlButtonMin_Click);
@@ -179,10 +175,10 @@
             // 
             this.backBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.backBtn.Image = global::Snake.Properties.Resources.Sprite_0002;
-            this.backBtn.Location = new System.Drawing.Point(40, 90);
-            this.backBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.backBtn.Location = new System.Drawing.Point(20, 47);
+            this.backBtn.Margin = new System.Windows.Forms.Padding(2);
             this.backBtn.Name = "backBtn";
-            this.backBtn.Size = new System.Drawing.Size(88, 83);
+            this.backBtn.Size = new System.Drawing.Size(44, 43);
             this.backBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.backBtn.TabIndex = 38;
             this.backBtn.TabStop = false;
@@ -192,10 +188,10 @@
             // 
             this.heart3.BackColor = System.Drawing.Color.Transparent;
             this.heart3.Image = global::Snake.Properties.Resources.heart;
-            this.heart3.Location = new System.Drawing.Point(1042, 206);
-            this.heart3.Margin = new System.Windows.Forms.Padding(4);
+            this.heart3.Location = new System.Drawing.Point(521, 107);
+            this.heart3.Margin = new System.Windows.Forms.Padding(2);
             this.heart3.Name = "heart3";
-            this.heart3.Size = new System.Drawing.Size(78, 73);
+            this.heart3.Size = new System.Drawing.Size(39, 38);
             this.heart3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.heart3.TabIndex = 36;
             this.heart3.TabStop = false;
@@ -204,10 +200,10 @@
             // 
             this.heart2.BackColor = System.Drawing.Color.Transparent;
             this.heart2.Image = global::Snake.Properties.Resources.heart;
-            this.heart2.Location = new System.Drawing.Point(958, 206);
-            this.heart2.Margin = new System.Windows.Forms.Padding(4);
+            this.heart2.Location = new System.Drawing.Point(479, 107);
+            this.heart2.Margin = new System.Windows.Forms.Padding(2);
             this.heart2.Name = "heart2";
-            this.heart2.Size = new System.Drawing.Size(78, 73);
+            this.heart2.Size = new System.Drawing.Size(39, 38);
             this.heart2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.heart2.TabIndex = 35;
             this.heart2.TabStop = false;
@@ -217,10 +213,10 @@
             this.heart1.BackColor = System.Drawing.Color.Transparent;
             this.heart1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.heart1.Image = global::Snake.Properties.Resources.heart;
-            this.heart1.Location = new System.Drawing.Point(876, 206);
+            this.heart1.Location = new System.Drawing.Point(438, 107);
             this.heart1.Margin = new System.Windows.Forms.Padding(0);
             this.heart1.Name = "heart1";
-            this.heart1.Size = new System.Drawing.Size(78, 73);
+            this.heart1.Size = new System.Drawing.Size(39, 38);
             this.heart1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.heart1.TabIndex = 34;
             this.heart1.TabStop = false;
@@ -228,32 +224,28 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Teal;
-            this.pictureBox1.Location = new System.Drawing.Point(22, 281);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Location = new System.Drawing.Point(11, 146);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1120, 1038);
+            this.pictureBox1.Size = new System.Drawing.Size(560, 540);
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
-            // powerupTimer
-            // 
-            this.powerupTimer.Interval = 5000;
-            // 
             // customTitleBarControl1
             // 
-            this.customTitleBarControl1.Location = new System.Drawing.Point(-2, -6);
-            this.customTitleBarControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.customTitleBarControl1.Location = new System.Drawing.Point(-1, -3);
+            this.customTitleBarControl1.Margin = new System.Windows.Forms.Padding(2);
             this.customTitleBarControl1.Name = "customTitleBarControl1";
-            this.customTitleBarControl1.Size = new System.Drawing.Size(1746, 50);
+            this.customTitleBarControl1.Size = new System.Drawing.Size(873, 26);
             this.customTitleBarControl1.TabIndex = 39;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1746, 1358);
+            this.ClientSize = new System.Drawing.Size(873, 706);
             this.Controls.Add(this.pnlButtonClose);
             this.Controls.Add(this.pnlButtonMin);
             this.Controls.Add(this.customTitleBarControl1);
@@ -271,10 +263,9 @@
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Text = "Snake Game";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
@@ -306,9 +297,6 @@
         private CustomTitleBarControl customTitleBarControl1;
         private System.Windows.Forms.Timer directionTimer;
         private System.Windows.Forms.ComboBox comboBoxDiff;
-        private System.Windows.Forms.Timer powerupTimer;
-        private System.Windows.Forms.Timer powerupDuration;
-        private System.Windows.Forms.Timer reduceSpeed;
     }
 }
 

@@ -54,7 +54,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Food.cs" />
-    <Compile Include="Powerup.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -88,7 +87,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -180,8 +179,6 @@
   <ItemGroup>
     <Content Include="Resources\bgForm.wav" />
     <Content Include="Resources\blipSelect.wav" />
-    <None Include="Resources\health_powerup.png" />
-    <None Include="Resources\speed_powerup.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
