@@ -37,7 +37,7 @@ namespace Snake
         private void InitializeTimer()
         {
             // Ensure that the duration is greater than 0
-            durationInSeconds = 10;
+            durationInSeconds = 7;
 
             timer = new Timer();
             timer.Interval = durationInSeconds * 1000; // Convert seconds to milliseconds

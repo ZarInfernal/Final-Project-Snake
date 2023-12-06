@@ -238,8 +238,6 @@ namespace Snake
 
         private void directionTimer_Tick(object sender, EventArgs e)
         {
-            //Console.WriteLine("Direction Timer Tick");
-
             snake.Move();
             CheckCollisions();
 
@@ -284,7 +282,8 @@ namespace Snake
             obstacleTimer.Start();
             snake = new SnakePlayer();
             GenerateFood(); // Generate initial food position
-            //GeneratePowerup(); // Generate initial powerup position
+            activePowerups.Clear(); // Generate initial powerup position
+            if (directionTimer.Interval == 175) directionTimer.Interval = 100;
             pictureBox1.Invalidate();
         }
 
@@ -310,6 +309,8 @@ namespace Snake
                 directionTimer.Start();
                 snake = new SnakePlayer();
                 GenerateFood(); // Generate initial food position
+                if (directionTimer.Interval == 175) directionTimer.Interval = 100;
+                activePowerups.Clear();
                 pictureBox1.Invalidate();
 
                 // Start the obstacleTimer
@@ -364,8 +365,6 @@ namespace Snake
             {
                 powerup.Draw(e.Graphics);
             }
-            //if(powerup != null)
-            //    powerup.Draw(e.Graphics);
         }
         #endregion
 
@@ -529,30 +528,25 @@ namespace Snake
                             heart2.Visible = true;
                             heart3.Visible = true;
 
-                            //activePowerups.Remove(powerup);
                             isPowerupActive = false;
 
                             break;
                         case Powerups.PowerupType.Speed:
                             directionTimer.Interval = 175;
-                            //snake.speed = 19; // Reduce speed
                             speedPowerupCollectedTime = DateTime.Now; // Record the time when the speed powerup was collected
                             break;
                     }
 
                     activePowerups.Remove(powerup);
-
-
                     // Remove the collected powerup from the list
                 }
             }
 
-            if (directionTimer.Interval == 175 && DateTime.Now - speedPowerupCollectedTime > TimeSpan.FromSeconds(8))
+            if (directionTimer.Interval == 175 && DateTime.Now - speedPowerupCollectedTime > TimeSpan.FromSeconds(7))
             {
-                // If 6 seconds have passed, restore the snake's speed to the default value (20)
+                // If 7 seconds have passed, restore the snake's speed to the default value (20)
                 directionTimer.Interval = 100;
                 isPowerupActive = false;
-                //snake.speed = 20;
                 Task.Delay(random.Next(5000, 10000)).ContinueWith(_ => GenerateRandomPowerup());
             }
 
@@ -590,6 +584,7 @@ namespace Snake
             // Reset the snake position after a hit
             snake = new SnakePlayer();
             GenerateFood(); // Generate initial food position
+            if(directionTimer.Interval == 175) directionTimer.Interval = 100;
             pictureBox1.Invalidate();
         }
         #endregion
@@ -666,7 +661,7 @@ namespace Snake
 
         private void HandlePowerupExpired(Powerups expiredPowerup)
         {
-            activePowerups.Remove(expiredPowerup);
+            activePowerups.Clear();
             isPowerupActive = false;
         }
 
