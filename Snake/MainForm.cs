@@ -22,6 +22,7 @@ namespace Snake
         // Game Stuff
         private StartScreen startScreen;
         private SoundPlayer bgGamePlayer;
+        private HelpForm helpForm;
 
         private bool IsGameMusicEnabled = true;
         private bool isGameStarted = false;
@@ -687,6 +688,14 @@ namespace Snake
 
         }
 
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+        
+            HelpForm helpForm = new HelpForm();
+
+        
+            helpForm.Show();
+        }
 
     }
 }

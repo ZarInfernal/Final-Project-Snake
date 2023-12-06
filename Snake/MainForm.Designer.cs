@@ -44,13 +44,16 @@
             this.heart2 = new System.Windows.Forms.PictureBox();
             this.heart1 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.customTitleBarControl1 = new CustomTitleBarControl();
             this.obstacleTimer = new System.Windows.Forms.Timer(this.components);
+            this.btnHelp = new System.Windows.Forms.PictureBox();
+            this.customTitleBarControl1 = new CustomTitleBarControl();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.backBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHelp)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -222,6 +225,18 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
+            // btnHelp
+            // 
+            this.btnHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btnHelp.Image = global::Snake.Properties.Resources.question;
+            this.btnHelp.Location = new System.Drawing.Point(1083, 225);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(66, 66);
+            this.btnHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnHelp.TabIndex = 41;
+            this.btnHelp.TabStop = false;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
             // customTitleBarControl1
             // 
             this.customTitleBarControl1.Location = new System.Drawing.Point(-2, -5);
@@ -229,12 +244,26 @@
             this.customTitleBarControl1.Size = new System.Drawing.Size(1310, 40);
             this.customTitleBarControl1.TabIndex = 39;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Variable Display", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.label1.Location = new System.Drawing.Point(1014, 311);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(222, 48);
+            this.label1.TabIndex = 42;
+            this.label1.Text = "How to Play";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1310, 1086);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.pnlButtonClose);
             this.Controls.Add(this.pnlButtonMin);
             this.Controls.Add(this.customTitleBarControl1);
@@ -262,6 +291,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.heart2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHelp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -286,6 +316,8 @@
         private System.Windows.Forms.Timer directionTimer;
         private System.Windows.Forms.ComboBox comboBoxDiff;
         private System.Windows.Forms.Timer obstacleTimer;
+        private System.Windows.Forms.PictureBox btnHelp;
+        private System.Windows.Forms.Label label1;
     }
 }
 
