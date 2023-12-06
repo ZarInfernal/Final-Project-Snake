@@ -611,7 +611,7 @@ namespace Snake
             Random random = new Random();
             Powerups newPowerup;
 
-            // Maximum number of attempts to generate a powerup without overlapping with snake, food, or obstacles
+            // Maximum number of attempts to generate a powerup without overlapping with snake, food, obstacles, or other powerups
             int maxAttempts = 50;
 
             for (int attempt = 0; attempt < maxAttempts; attempt++)
@@ -630,15 +630,25 @@ namespace Snake
                 if (food.Position.IntersectsWith(powerupRectangle))
                     continue;
 
-                // Check if the powerup overlaps with obstacles (to be implemented)
-                foreach (Obstacle obstacle in obstacles)
+                // Check if the powerup overlaps with obstacles
+                bool obstacleOverlap = false;
+                for (int i = 0; i < obstacles.Count; i++)
                 {
-                    if (obstacle.Position.IntersectsWith(powerupRectangle))
-                        continue;
+                    if (obstacles[i].Position.IntersectsWith(powerupRectangle))
+                    {
+                        obstacleOverlap = true;
+                        break;
+                    }
                 }
 
-                // If none of the checks failed, create the powerup and add it to the list
+                if (obstacleOverlap)
+                    continue;
 
+                // Check if the powerup overlaps with other active powerups
+                if (activePowerups.Any(existingPowerup => existingPowerup.Position.IntersectsWith(powerupRectangle)))
+                    continue;
+
+                // If none of the checks failed, create the powerup and add it to the list
                 if (snakeHealth == 3)
                 {
                     Powerups.PowerupType type = Powerups.PowerupType.Speed;
@@ -651,13 +661,13 @@ namespace Snake
                 }
 
                 newPowerup.OnPowerupExpired += HandlePowerupExpired;
-
                 activePowerups.Add(newPowerup);
 
                 // Exit the loop since a valid powerup has been generated
                 break;
             }
         }
+
 
 
         private void HandlePowerupExpired(Powerups expiredPowerup)

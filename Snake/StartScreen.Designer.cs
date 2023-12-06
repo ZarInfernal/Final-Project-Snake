@@ -34,9 +34,9 @@
             this.BarControls = new System.Windows.Forms.Panel();
             this.pnlButtonClose = new System.Windows.Forms.Button();
             this.pnlButtonMin = new System.Windows.Forms.Button();
+            this.customTitleBarControl1 = new CustomTitleBarControl();
             this.btnAbout = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
-            this.customTitleBarControl1 = new CustomTitleBarControl();
             this.BarControls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,6 +121,13 @@
             this.pnlButtonMin.UseVisualStyleBackColor = false;
             this.pnlButtonMin.Click += new System.EventHandler(this.pnlButtonMin_Click);
             // 
+            // customTitleBarControl1
+            // 
+            this.customTitleBarControl1.Location = new System.Drawing.Point(0, -3);
+            this.customTitleBarControl1.Name = "customTitleBarControl1";
+            this.customTitleBarControl1.Size = new System.Drawing.Size(1116, 40);
+            this.customTitleBarControl1.TabIndex = 14;
+            // 
             // btnAbout
             // 
             this.btnAbout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
@@ -149,13 +156,6 @@
             this.btnSettings.TabIndex = 11;
             this.btnSettings.UseVisualStyleBackColor = false;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            // 
-            // customTitleBarControl1
-            // 
-            this.customTitleBarControl1.Location = new System.Drawing.Point(0, -3);
-            this.customTitleBarControl1.Name = "customTitleBarControl1";
-            this.customTitleBarControl1.Size = new System.Drawing.Size(1116, 40);
-            this.customTitleBarControl1.TabIndex = 14;
             // 
             // StartScreen
             // 
