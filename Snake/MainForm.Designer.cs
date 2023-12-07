@@ -46,8 +46,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.obstacleTimer = new System.Windows.Forms.Timer(this.components);
             this.btnHelp = new System.Windows.Forms.PictureBox();
-            this.customTitleBarControl1 = new CustomTitleBarControl();
             this.label1 = new System.Windows.Forms.Label();
+            this.customTitleBarControl1 = new CustomTitleBarControl();
             ((System.ComponentModel.ISupportInitialize)(this.backBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heart2)).BeginInit();
@@ -108,9 +108,11 @@
             // comboBoxDiff
             // 
             this.comboBoxDiff.BackColor = System.Drawing.Color.LavenderBlush;
+            this.comboBoxDiff.CausesValidation = false;
+            this.comboBoxDiff.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxDiff.Location = new System.Drawing.Point(1034, 558);
             this.comboBoxDiff.Name = "comboBoxDiff";
-            this.comboBoxDiff.Size = new System.Drawing.Size(170, 28);
+            this.comboBoxDiff.Size = new System.Drawing.Size(170, 42);
             this.comboBoxDiff.TabIndex = 31;
             this.comboBoxDiff.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox1_KeyDown);
             // 
@@ -237,13 +239,6 @@
             this.btnHelp.TabStop = false;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
-            // customTitleBarControl1
-            // 
-            this.customTitleBarControl1.Location = new System.Drawing.Point(-2, -5);
-            this.customTitleBarControl1.Name = "customTitleBarControl1";
-            this.customTitleBarControl1.Size = new System.Drawing.Size(1310, 40);
-            this.customTitleBarControl1.TabIndex = 39;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -255,6 +250,13 @@
             this.label1.TabIndex = 42;
             this.label1.Text = "How to Play";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // customTitleBarControl1
+            // 
+            this.customTitleBarControl1.Location = new System.Drawing.Point(-2, -5);
+            this.customTitleBarControl1.Name = "customTitleBarControl1";
+            this.customTitleBarControl1.Size = new System.Drawing.Size(1310, 40);
+            this.customTitleBarControl1.TabIndex = 39;
             // 
             // MainForm
             // 

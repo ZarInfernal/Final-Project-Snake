@@ -1,6 +1,6 @@
 ﻿using Snake.Properties;
 using System;
-using System.Media; // Add this namespace for SoundPlayer
+using System.Media; 
 using System.Threading;
 using System.Windows.Forms;
 
@@ -96,8 +96,7 @@ namespace Snake
         }
         #endregion
 
-     
-
+        #region Music
         public void StartBackgroundMusic()
         {
             backgroundMusicThread = new Thread(PlayBackgroundMusic);
@@ -126,5 +125,6 @@ namespace Snake
             backgroundMusicThread?.Abort();
             clickSoundThread?.Abort();
         }
+        #endregion
     }
 }

@@ -66,8 +66,7 @@ namespace Snake
         {
             InitializeComponent();
 
-            // Initialize SoundPlayer instances with audio files
-            //bgMusicPlayer = new SoundPlayer(Resources.bgForm); // The original background music
+            
             bgGamePlayer = new SoundPlayer(Resources.bgGame); // New background audio for the game
 
             this.startScreen = startScreen; // Initialize the startScreen variable
@@ -80,20 +79,7 @@ namespace Snake
             food = new Food();
 
             random = new Random();
-            //healthPowerup = new HealthPowerup();
-            //speedPowerup = new SpeedPowerup();
-
-            //powerupTimer.Interval = 6000;
-            //powerupTimer.Tick += powerupTimer_Tick;
-            //powerupTimer.Start();
-
-            //powerupDuration.Interval = 5000;
-            //powerupDuration.Tick += powerupDuration_Tick;
-
-            //reduceSpeed.Interval = 8000;
-            //reduceSpeed.Tick += reduceSpeed_Tick;
-
-            //powerup = new Powerup();
+           
             lblScore.Text = "SCORE: 0";
             lblPlayerHighScore.Text = "PLAYER HIGH SCORE: 0";
             lblHighScore.Text = "HIGH SCORE: 0";
@@ -179,6 +165,14 @@ namespace Snake
 
             this.Hide();
             Environment.Exit(0);
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            HelpForm helpForm = new HelpForm();
+
+            helpForm.Show();
+            PauseGame();
         }
         #endregion
 
@@ -698,13 +692,7 @@ namespace Snake
 
         }
 
-        private void btnHelp_Click(object sender, EventArgs e)
-        {
-            HelpForm helpForm = new HelpForm();
-
-        
-            helpForm.Show();
-        }
+    
 
     }
 }

@@ -14,12 +14,14 @@ namespace Snake
 {
     public partial class HelpForm : Form
     {
+        #region StartUp
         public HelpForm()
         {
             InitializeComponent();
             ShowAboutSection();
         }
-
+        #endregion
+        #region Buttons
         private void button_about_Click(object sender, EventArgs e)
         {
             ShowAboutSection();
@@ -44,7 +46,8 @@ namespace Snake
         {
             this.Close();
         }
-
+        #endregion
+        #region Form Navigation
         private void ShowAboutSection()
         {
             richTextBox_about.Visible = true;
@@ -119,5 +122,6 @@ namespace Snake
             button_next.Visible = true;
             button_back.Visible = true;
         }
+        #endregion
     }
 }
