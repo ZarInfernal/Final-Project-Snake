@@ -700,7 +700,6 @@ namespace Snake
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
-        
             HelpForm helpForm = new HelpForm();
 
         

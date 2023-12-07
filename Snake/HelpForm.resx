@@ -117,4 +117,83 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="richTextBox_about.Text" xml:space="preserve">
+    <value>
+
+
+
+
+Welcome to the Snake Game!
+The goal of the game is to grow your
+snake character as long as possible.
+You do this by moving your snake
+around the gameboard, collecting food.
+But be careful! If your snake runs into
+the walls of the gameboard, or runs into
+its own body, you lose a life. Lose 3
+lives and the game's over.</value>
+  </data>
+  <data name="richTextBox_controls.Text" xml:space="preserve">
+    <value>
+
+
+
+
+Your snake is continuously moving around
+the gameboard. Use the arrow keys on your
+keyboard to control the direction your snake
+moves in. it can only travel up, down, left and
+right. It cannot move diagonally.</value>
+  </data>
+  <data name="label_speed.Text" xml:space="preserve">
+    <value>This is a speed power up,
+and it actually makes you
+slower, not faster. Speed
+power ups appear at
+random throughout the
+game. If your snake eats
+one, it will slow down for
+7 seconds. You only have
+7 seconds to collect it before
+it disappears.</value>
+  </data>
+  <data name="label_health.Text" xml:space="preserve">
+    <value>Did your snake hit
+something it shouldn't have
+and lose a life? Don't worry,
+this health power up is here
+to save the day. The health
+power up will restore all of
+your lost lives. It will appear
+at random intervals through
+the gameboard, and you
+only have 7 seconds to pick
+it up before it disappears.</value>
+  </data>
+  <data name="label_obstacle.Text" xml:space="preserve">
+    <value>This is an box. But not just
+any box. This box is an
+obstacle that your snake
+must avoid. Boxes will
+appear and disapper randomly
+throughout the game, so
+always be on the lookout.
+If you hit a box, you lose a
+life, so make sure you have
+a happy snake and
+AVOID THOSE BOXES!!</value>
+  </data>
+  <data name="label_food.Text" xml:space="preserve">
+    <value>This is an apple. Your goal
+is to eat as many apples as
+possible. Each time you eat
+an apple, a new apple will
+appear somewhere on the
+gameboard. As you eat these
+apples, your snake will grow.
+Keep eating apples to gain
+points and see how long you
+can grow your snake.
+</value>
+  </data>
 </root>
