@@ -27,12 +27,10 @@ namespace Snake
             
             // Set the music switch to the value saved in settings
             musicSwitch.Checked = Settings.Default.IsMusicSwitchOn;
-            clickSoundSwitch.Checked = Settings.Default.IsClickSoundSwitchOn;
             gameSoundSwitch.Checked = Settings.Default.IsGameSoundSwitchOn;
 
             // Handle the initial state
             musicSwitch_CheckedChanged(null, null);
-            clickSoundSwitch_CheckedChanged(null, null);
             gameSoundSwitch_CheckedChanged(null, null);
         }
         #endregion
@@ -40,7 +38,6 @@ namespace Snake
         #region Buttons
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            startScreen.ButtonClick();
             startScreen.Show();
             Close();
         }
@@ -60,7 +57,7 @@ namespace Snake
         #region Switch Checks
         private void musicSwitch_CheckedChanged(object sender, EventArgs e)
         {
-            startScreen.ButtonClick();
+           
             if (musicSwitch.Checked)
             {
                 // If the switch is checked (music should play), and the music is not already playing, start it.
@@ -85,17 +82,11 @@ namespace Snake
             Settings.Default.Save();
         }
 
-        private void clickSoundSwitch_CheckedChanged(object sender, EventArgs e)
-        {
-            startScreen.ButtonClick();
-            // Update the setting when the switch changes
-            Settings.Default.IsClickSoundSwitchOn = clickSoundSwitch.Checked;
-            Settings.Default.Save();
-        }
+     
 
         private void gameSoundSwitch_CheckedChanged(object sender, EventArgs e)
         {
-            startScreen.ButtonClick();
+          
             // Update the setting when the switch changes
             Settings.Default.IsGameSoundSwitchOn = gameSoundSwitch.Checked;
             Settings.Default.Save();

@@ -50,18 +50,6 @@ namespace Snake.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool IsClickSoundSwitchOn {
-            get {
-                return ((bool)(this["IsClickSoundSwitchOn"]));
-            }
-            set {
-                this["IsClickSoundSwitchOn"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool IsGameSoundSwitchOn {
             get {
                 return ((bool)(this["IsGameSoundSwitchOn"]));

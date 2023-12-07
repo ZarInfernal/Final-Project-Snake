@@ -132,7 +132,7 @@ namespace Snake
         {
             // Stop the background music
             startScreen.backgroundMusicThread?.Abort();
-            startScreen.ButtonClick();
+            
 
             // Start the game background audio
             ToggleGameMusic(Settings.Default.IsGameSoundSwitchOn);
@@ -155,7 +155,7 @@ namespace Snake
         {
             if (startScreen != null)
             {
-                startScreen.ButtonClick();
+               
                 // Stop the game background audio only if the game is started
                 if (isGameStarted)
                 {

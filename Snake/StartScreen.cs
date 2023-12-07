@@ -1,8 +1,8 @@
 ﻿using Snake.Properties;
 using System;
 using System.Media; // Add this namespace for SoundPlayer
-using System.Windows.Forms;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace Snake
 {
@@ -56,7 +56,7 @@ namespace Snake
         private void btnPlay_Click(object sender, EventArgs e)
         {
             MainForm mainForm = new MainForm(this);
-            ButtonClick();
+           
             mainForm.Show();
             Hide();
         }
@@ -64,14 +64,14 @@ namespace Snake
         private void btnExit_Click(object sender, EventArgs e)
         {
             // Exit the program
-            ButtonClick();
+          
             Application.Exit();
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
             SettingsForm settingsForm = new SettingsForm(this);
-            ButtonClick();
+          
             settingsForm.Show();
             Hide();
 
@@ -79,7 +79,7 @@ namespace Snake
 
         private void btnAbout_Click(object sender, EventArgs e)
         {
-            ButtonClick();
+            
             MessageBox.Show("This is Group 8 Snake Game Project");
         }
 
@@ -96,11 +96,7 @@ namespace Snake
         }
         #endregion
 
-        public void ButtonClick()
-        {
-            clickSoundThread = new Thread(PlayCLickSound);
-            clickSoundThread.Start();
-        }
+     
 
         public void StartBackgroundMusic()
         {
@@ -108,15 +104,7 @@ namespace Snake
             backgroundMusicThread.Start();
         }
 
-        private void PlayCLickSound()
-        {
-            if (clickSoundPlayer != null && Settings.Default.IsClickSoundSwitchOn) 
-            { 
-                    //Play the click sound asynchronously
-                    //clickSoundPlayer.Play();
-                
-            }
-        }
+        
 
         private void PlayBackgroundMusic()
         {
